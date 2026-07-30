@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +35,7 @@ body{background:var(--paper);color:var(--ink);font-family:'Geist',sans-serif;fon
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
 .serif{font-family:'Instrument Serif',serif;}
 .mono{font-family:'DM Mono',monospace;}
-
+ 
 /* NAV + HERO */
 .hero{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;padding:2rem;border-bottom:1px solid var(--border);}
 .nav{display:flex;justify-content:space-between;align-items:center;padding-bottom:2rem;border-bottom:1px solid var(--border);}
@@ -53,7 +56,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-footer{display:flex;gap:2.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
 .stat-num{font-family:'Instrument Serif',serif;font-size:2rem;color:var(--ink);line-height:1;}
 .stat-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
-
+ 
 /* STORY */
 .story{max-width:1100px;margin:0 auto;padding:6rem 2rem;display:grid;grid-template-columns:1fr 1.6fr;gap:6rem;align-items:start;}
 .story-left{position:sticky;top:4rem;}
@@ -70,7 +73,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .tag-red{background:var(--red-bg);color:var(--red);}
 .tag-green{background:var(--green-bg);color:var(--green);}
 .tag-purple{background:var(--accent-bg);color:var(--accent);}
-
+ 
 /* INSIGHT STRIP */
 .insight-strip{background:var(--ink);color:var(--paper);padding:4rem 2rem;}
 .insight-inner{max-width:1100px;margin:0 auto;}
@@ -81,7 +84,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .insight-num{font-family:'Instrument Serif',serif;font-size:3rem;color:rgba(245,242,236,0.12);line-height:1;margin-bottom:1rem;}
 .insight-text{font-family:'Instrument Serif',serif;font-size:1.1rem;line-height:1.5;color:rgba(245,242,236,0.85);font-style:italic;}
 .insight-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(245,242,236,0.35);letter-spacing:0.06em;margin-top:0.75rem;text-transform:uppercase;}
-
+ 
 /* TOOL SECTION */
 .tool-section{max-width:1100px;margin:0 auto;padding:6rem 2rem;}
 .tool-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem;align-items:end;border-bottom:1px solid var(--border);padding-bottom:3rem;}
@@ -89,7 +92,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .tool-desc{font-size:14px;color:var(--muted);line-height:1.8;}
 .tool-meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem;}
 .tool-tag{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--border);border-radius:2px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;}
-
+ 
 /* TOOL FRAME */
 .tool-frame{background:#FDFCFA;border:1px solid var(--border);border-radius:4px;padding:2rem;min-height:400px;}
 .step-bar{display:flex;gap:6px;margin-bottom:2rem;}
@@ -106,7 +109,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .opt-btn.selected{border-color:var(--accent);background:var(--accent-bg);color:var(--accent-dark);}
 .opt-btn.multi-selected{border-color:var(--accent);background:var(--accent-bg);color:var(--accent-dark);}
 .opt-btn.disabled{opacity:0.35;pointer-events:none;}
-
+ 
 /* SIGNAL CARDS */
 .signal-card{border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;margin-bottom:0.75rem;background:var(--paper);}
 .sig-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;}
@@ -119,7 +122,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .mini-sel:focus{outline:none;border-color:var(--accent);}
 .add-sig-btn{border:1px dashed var(--border);border-radius:2px;padding:10px;width:100%;background:transparent;cursor:pointer;font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);margin-bottom:1.25rem;letter-spacing:0.04em;transition:all 0.15s;}
 .add-sig-btn:hover{border-color:var(--muted);color:var(--ink);}
-
+ 
 /* BIAS */
 .bias-q{padding:1rem 0;border-bottom:1px solid var(--border);}
 .bias-q:last-child{border-bottom:none;}
@@ -129,7 +132,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .bias-opt.sel-yes{border-color:var(--red);background:var(--red-bg);color:var(--red);}
 .bias-opt.sel-sometimes{border-color:var(--orange);background:var(--orange-bg);color:var(--orange);}
 .bias-opt.sel-no{border-color:var(--green);background:var(--green-bg);color:var(--green);}
-
+ 
 /* NAV BUTTONS */
 .nav-row{display:flex;gap:8px;margin-top:1.5rem;}
 .t-btn{flex:1;padding:11px;border:1px solid var(--ink);border-radius:2px;background:var(--ink);color:var(--paper);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;cursor:pointer;transition:all 0.15s;text-transform:uppercase;}
@@ -138,7 +141,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .t-btn-back:hover{background:var(--paper2);color:var(--ink);}
 .screen{display:none;}
 .screen.active{display:block;}
-
+ 
 /* RESULTS */
 .result-sec{margin-bottom:1.75rem;}
 .result-hdr{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;}
@@ -151,7 +154,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .score-noise{background:var(--red-bg);color:var(--red);border:1px solid #F2AAAA;}
 .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
 .bar-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:72px;flex-shrink:0;text-transform:uppercase;letter-spacing:0.04em;}
-.bar-track{flex:1;width:100%;height:6px;background:var(--paper2);border-radius:3px;overflow:hidden;}
+.bar-track{flex:1;height:4px;background:var(--paper2);border-radius:2px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:2px;transition:width 0.8s ease;}
 .bar-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:36px;text-align:right;}
 .tag-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
@@ -160,7 +163,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .rtag-weak{background:var(--orange-bg);color:var(--orange);}
 .rtag-noise{background:var(--red-bg);color:var(--red);}
 .rtag-flag{background:var(--accent-bg);color:var(--accent);}
-
+ 
 /* PATTERN CONFIDENCE CARD */
 .pattern-card{border:1px solid var(--border);border-radius:4px;padding:1.25rem;background:var(--paper);margin-bottom:0.75rem;}
 .pattern-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
@@ -170,7 +173,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pattern-interp strong{color:var(--accent);}
 .motion-mismatch{background:var(--accent-bg);border:1px solid #c9a0f5;border-radius:4px;padding:0.75rem 1rem;margin-top:0.75rem;font-size:12px;color:var(--accent-dark);line-height:1.6;}
 .motion-mismatch .mono{font-size:10px;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:4px;}
-
+ 
 /* VERDICT CARDS */
 .verdict{border-radius:4px;padding:1.25rem;margin-bottom:0.75rem;}
 .verdict.strong{border:1px solid #9FD6BC;background:var(--green-bg);}
@@ -187,16 +190,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .verdict.mixed .verdict-body{color:#5A3200;}
 .verdict.weak .verdict-body{color:#6A1A1A;}
 .verdict.purple .verdict-body{color:var(--accent-dark);}
-
+ 
 /* UNCOMFORTABLE BOX */
 .uncomfortable-box{border-left:3px solid var(--red);padding:1rem 1.25rem;background:var(--paper);border-radius:0 4px 4px 0;margin-top:1rem;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
 .uncomfortable-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
 .uncomfortable-text{font-size:13px;color:var(--ink);line-height:1.7;}
-
+ 
 /* HEURISTIC NOTE */
 .heuristic-note{border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;margin-top:1.5rem;background:var(--paper2);}
 .heuristic-text{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.7;font-style:italic;}
-
+ 
 /* COMING SOON */
 .coming-soon{background:var(--paper2);border-top:1px solid var(--border);padding:6rem 2rem;}
 .coming-inner{max-width:1100px;margin:0 auto;}
@@ -204,13 +207,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .coming-body p{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:1rem;}
 .coming-pill-live{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;padding:4px 12px;border:1px solid var(--green);border-radius:20px;color:var(--green);background:var(--green-bg);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.5rem;}
 .coming-pill-soon{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.5rem;margin-left:8px;}
-
+ 
 /* FOOTER */
 .footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-left{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
 .footer-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color 0.15s;}
 .footer-link:hover{color:var(--ink);}
-
+ 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .hero-body>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
@@ -220,81 +223,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-body>*:nth-child(4){animation-delay:0.4s;}
 .hero-body>*:nth-child(5){animation-delay:0.5s;}
 .highlight{color:var(--accent);}
-
+ 
 @media(max-width:768px){
   .story{grid-template-columns:1fr;gap:3rem;}
-  .story-left{position:static;top:auto;}
+  .story-left{position:relative;top:auto;}
   .hero-headline{font-size:2.4rem;}
   .tool-header{grid-template-columns:1fr;gap:2rem;}
   .insight-grid{grid-template-columns:1fr;}
-  .dist-lbl{width:130px !important;}
 }
-
-
-/* POSITION CARD (2x2 read) */
-.position-card{border:1px solid var(--border);border-radius:4px;padding:1.25rem;}
-.position-card.pos-strong{border-color:#9FD6BC;background:var(--green-bg);}
-.position-card.pos-mixed{border-color:#F5C97A;background:var(--orange-bg);}
-.position-card.pos-weak{border-color:#F2AAAA;background:var(--red-bg);}
-.position-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap;}
-.position-name{font-size:1.7rem;line-height:1.2;color:var(--ink);}
-.position-diag{font-size:13px;color:var(--ink);line-height:1.65;margin-top:8px;max-width:540px;}
-.conf-pill{font-family:'DM Mono',monospace;font-size:10px;padding:4px 11px;border-radius:20px;white-space:nowrap;flex-shrink:0;letter-spacing:0.04em;text-transform:uppercase;}
-.conf-act{background:var(--green-bg);color:var(--green);border:1px solid #9FD6BC;}
-.conf-validate{background:var(--orange-bg);color:var(--orange);border:1px solid #F5C97A;}
-.pos-map{display:grid;grid-template-columns:1fr 1fr;gap:5px;max-width:380px;margin:1.25rem 0 0.5rem;}
-.pos-cell{border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:60px;background:var(--paper);opacity:0.45;transition:opacity 0.2s;}
-.pos-cell.active{opacity:1;border-width:2px;border-color:var(--accent);}
-.pos-cell-name{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);line-height:1.4;}
-.pos-cell.active .pos-cell-name{color:var(--ink);font-weight:500;}
-.pos-you{font-family:'DM Mono',monospace;font-size:8px;color:var(--accent);margin-top:5px;letter-spacing:0.08em;}
-.pos-axislbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.25rem;}
-.position-action{font-size:13px;line-height:1.7;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,0.08);color:var(--ink);}
-.position-action .mono{display:block;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
-.pos-block{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,0.08);}
-.pos-block .mono{display:block;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
-.pos-block-body{font-size:13px;line-height:1.7;color:var(--ink);}
-.pos-block-body strong{color:var(--accent-dark);}
-.pos-next{margin-top:1rem;padding:0.85rem 1rem;background:var(--accent-bg);border-radius:4px;border:1px solid #c9a0f5;}
-.pos-next .mono{display:block;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
-.pos-next-body{font-family:'Instrument Serif',serif;font-size:1.15rem;line-height:1.4;color:var(--accent-dark);}
-.pos-note{margin-top:0.75rem;font-family:'DM Mono',monospace;font-size:10px;line-height:1.6;color:var(--muted);letter-spacing:0.02em;font-style:italic;}
-.pos-sig-ref{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent-dark);background:rgba(92,15,203,0.09);padding:1px 6px;border-radius:3px;letter-spacing:0.02em;white-space:nowrap;}
-
-
-/* CONCENTRATION DISTRIBUTION */
-.dist-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
-.dist-lbl{font-size:12px;color:var(--ink);width:210px;flex-shrink:0;line-height:1.35;}
-.dist-track{flex:1;height:8px;background:var(--paper2);border-radius:4px;overflow:hidden;}
-.dist-fill{height:100%;background:var(--accent);border-radius:4px;transition:width 0.8s ease;}
-.dist-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:38px;text-align:right;}
-
-/* PROVEN / EMERGING / NOISE */
-.rtag-emerging{background:var(--accent-bg);color:var(--accent-dark);border:1px solid #c9a0f5;}
-.score-emerging{background:var(--accent-bg);color:var(--accent-dark);}
-.pos-momentum{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.04em;color:var(--muted);margin-top:0.75rem;}
-.pos-momentum.live{color:var(--green);}
-.pos-momentum.aging{color:var(--orange);}
-
-/* EMERGING DEMAND PANEL */
-.emerging-card{border:1px solid #c9a0f5;background:var(--accent-bg);border-radius:4px;padding:1.1rem 1.25rem;}
-.emerging-card .ec-title{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);margin-bottom:8px;}
-.emerging-card .ec-body{font-size:13px;line-height:1.7;color:var(--accent-dark);}
-.emerging-card .ec-body strong{color:var(--accent-dark);}
-.emerging-empty{border:1px dashed var(--border);border-radius:4px;padding:1.1rem 1.25rem;font-size:13px;color:var(--muted);line-height:1.65;}
-
-/* MOTION MIX */
-.mm-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
-.mm-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink);width:60px;flex-shrink:0;letter-spacing:0.04em;}
-.mm-track{flex:1;height:10px;background:var(--paper2);border-radius:5px;overflow:hidden;}
-.mm-fill{height:100%;border-radius:5px;transition:width 0.8s ease;}
-.mm-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);width:40px;text-align:right;}
-.mm-interp{font-size:13px;line-height:1.7;color:var(--ink);margin-top:0.85rem;}
-
 </style>
 </head>
 <body>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <nav class="nav">
@@ -316,14 +256,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
   <div class="hero-footer">
     <div class="stat-item"><div class="stat-num serif">3</div><div class="stat-label mono">GTM pivots</div></div>
-    <div class="stat-item"><div class="stat-num serif">3000+</div><div class="stat-label mono">Students trained</div></div>
+    <div class="stat-item"><div class="stat-num serif">3500+</div><div class="stat-label mono">Students trained</div></div>
     <div class="stat-item"><div class="stat-num serif">18 mo</div><div class="stat-label mono">Building the wrong thing</div></div>
-    <div class="stat-item"><div class="stat-num serif">8L</div><div class="stat-label mono">ARR</div></div>
+    
     <div class="stat-item"><div class="stat-num serif">100+</div><div class="stat-label mono">Drone kits sold</div></div>
     <div class="stat-item"><div class="stat-num serif">1</div><div class="stat-label mono">Question that changed everything</div></div>
   </div>
 </section>
-
+ 
 <!-- STORY -->
 <section id="story" style="border-bottom:1px solid var(--border);">
   <div class="story">
@@ -360,7 +300,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 </section>
-
+ 
 <!-- INSIGHT STRIP -->
 <section class="insight-strip">
   <div class="insight-inner">
@@ -384,7 +324,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 </section>
-
+ 
 <!-- TOOL -->
 <section id="tool">
   <div class="tool-section">
@@ -403,7 +343,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </div>
       </div>
     </div>
-
+ 
     <div class="tool-frame">
       <div class="step-bar" id="stepBar">
         <div class="step-dot active" id="dot0"></div>
@@ -412,11 +352,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="step-dot" id="dot3"></div>
         <div class="step-dot" id="dot4"></div>
       </div>
-
+ 
       <!-- S0 -->
       <div class="screen active" id="s0">
         <div class="t-label mono">Step 1 of 5</div>
         <div class="t-title serif">What kind of startup are you?</div>
+        <div class="t-sub">This helps identify the type of startup and the GTM motion currently in play. The signal weights and revenue opportunities presented later will adapt based on these inputs.</div>
         <div class="t-sec-lbl">Startup type</div>
         <div class="opt-grid" id="type-opts">
           <button class="opt-btn" onclick="tSel(this,'type','hardware')">Hardware</button>
@@ -430,26 +371,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <button class="opt-btn" onclick="tSel(this,'gtm','b2b2c')">B2B2C</button>
           <button class="opt-btn" onclick="tSel(this,'gtm','unsure')">Not sure. That is why I am here.</button>
         </div>
-        <div class="t-sec-lbl">What domain is your startup in?</div>
-        <input type="text" class="sig-input" id="domain-input" placeholder="e.g. drone education, robotics for schools, STEM kits" oninput="ts.domain=this.value" style="margin-bottom:1rem;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.04em;line-height:1.6;margin-bottom:1rem;">Anonymous responses are saved to improve this tool.</div>
         <div class="nav-row"><button class="t-btn" onclick="tNext(0)">Continue</button></div>
       </div>
-
+ 
       <!-- S1 -->
       <div class="screen" id="s1">
         <div class="t-label mono">Step 2 of 5</div>
         <div class="t-title serif">Tell me the signals you are seeing</div>
-        <div class="t-sub">What is the market actually telling you? A customer renewed. Someone made a referral. An institute replied. Meetings are happening but no LOIs are being signed. Prospects keep comparing your product to cheaper alternatives. Record up to 10 specific signals, both positive and negative. The goal is to observe reality, not justify a narrative.</div>
+        <div class="t-sub">What is the market actually telling you? A customer renewed. Someone made a referral. An institute replied. Meetings are happening but no LOIs are being signed. Prospects keep comparing your product to cheaper alternatives. Record up to 5 specific signals, both positive and negative. The goal is to observe reality, not justify a narrative.</div>
         <div id="sigs-container"></div>
         <button class="add-sig-btn" onclick="addSig()" id="add-sig-btn">+ Add another signal</button>
-        <div id="sig-warn" style="display:none;font-family:'DM Mono',monospace;font-size:11px;color:var(--red);margin-bottom:0.75rem;letter-spacing:0.03em;">Add at least one signal with a description to continue.</div>
         <div class="nav-row">
           <button class="t-btn-back" onclick="tBack(1)">Back</button>
           <button class="t-btn" onclick="tNext(1)">Continue</button>
         </div>
       </div>
-
+ 
       <!-- S2 -->
       <div class="screen" id="s2">
         <div class="t-label mono">Step 3 of 5</div>
@@ -471,7 +408,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <button class="t-btn" onclick="tNext(2)">Continue</button>
         </div>
       </div>
-
+ 
       <!-- S3 -->
       <div class="screen" id="s3">
         <div class="t-label mono">Step 4 of 5</div>
@@ -532,17 +469,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
           <button class="t-btn" onclick="tNext(3)">See my readout</button>
         </div>
       </div>
-
+ 
       <!-- S4 RESULTS -->
       <div class="screen" id="s4">
-        <div class="t-label mono">Your readout</div>
-        <div class="t-title serif" id="res-title">Here's what your current inputs may be suggesting</div>
+        <div class="t-label mono">Signal analysis complete</div>
+        <div class="t-title serif" id="res-title">Here is the honest picture</div>
         <div class="t-sub" id="res-sub"></div>
         <div class="result-sec" id="sig-results"></div>
-        <div class="result-sec" id="position-section"></div>
-        <div class="result-sec" id="emerging-section"></div>
+        <div class="result-sec" id="pattern-section"></div>
         <div class="result-sec">
-          <div class="result-hdr mono">Your motion mix — where demand is coming from</div>
+          <div class="result-hdr mono">What your signals say about the GTM motion in play</div>
           <div id="motion-out"></div>
         </div>
         <div class="result-sec">
@@ -561,7 +497,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 </section>
-
+ 
 <!-- COMING SOON -->
 <section class="coming-soon" id="toolkit">
   <div class="coming-inner">
@@ -575,55 +511,74 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left mono">GTM Signal Lab. Built by Tanya Pande.</div>
   <a href="https://in.linkedin.com/in/tanya-pande" target="_blank" class="footer-link">LinkedIn ↗</a>
 </footer>
-
+ 
 <script>
 // ── STATE ──
 const ts = {
-  type:null, gtm:null, domain:'',
-  revenue:null, rev_sources:[],
-  signals:[], biasAnswers:[null,null,null,null,null,null], sigCount:0
+  type: null, gtm: null, revenue: null, rev_sources: [],
+  signals: [], biasAnswers: [null,null,null,null,null,null], sigCount: 0
 };
-const MAX_SIGNALS = 10;
-
+ 
 // ── REVENUE OPTIONS BY STARTUP TYPE ──
 const revOptions = {
   hardware: ['Unit sale','Maintenance or service contract','Spare parts and consumables','Custom integration fees','Enterprise licensing','Data from device','Training on the hardware'],
   edtech: ['Course fee','B2B batch licensing','Content licensing to institutions','White-label curriculum','Consulting for curriculum design'],
   hybrid: ['Kit sale (hardware)','Curriculum subscription or school or institution licensing','Advanced kits and camps','Workshop fee','Teacher training','Community programmes']
 };
-
-// ── SUB-SCORES ── commitment is the base; channel + role form the context modifier (no time)
-const SUB = {
-  commit:  { renewed:1.0, paid:0.8, loi:0.5, verbal:0.25, none:0 },
-  channel: { referral:0.90, organic:0.75, community:0.60, marketplace:0.55, partner:0.50, event:0.45, outbound:0.30, paid_mktg:0.25 },
-  role:    { individual:1.0, org_buyer:1.0, institution:1.0, champion:0.5 }
+ 
+// ── SCORING WEIGHTS BY GTM MOTION (from PDF) ──
+const weights = {
+  d2c: {
+    role: { budget_holder:3, champion:1.5, end_user:2 },
+    commit: { paid_renewed:3, loi:2, verbal:0.5 },
+    source: { repeat_buyer:3, customer_referral:2.5, organic_inbound:2, cold_outreach:1 },
+    urgency: { same_day:1.5, within_week:1, one_four_weeks:0.5, one_three_months:0.25, still_pending:0.1 }
+  },
+  b2b: {
+    role: { budget_holder:3, champion:1.5, end_user:1 },
+    commit: { paid_renewed:3, loi:2.5, verbal:1 },
+    source: { repeat_buyer:3, customer_referral:2.5, organic_inbound:2, cold_outreach:1 },
+    urgency: { same_day:1.5, within_week:1.5, one_four_weeks:1.5, one_three_months:1, still_pending:0.5 }
+  },
+  b2b2c: {
+    role: { budget_holder:3, champion:2, end_user:2 },
+    commit: { paid_renewed:3, loi:2, verbal:0.5 },
+    source: { repeat_buyer:3, customer_referral:2.5, organic_inbound:2, cold_outreach:1 },
+    urgency: { same_day:1.5, within_week:1.5, one_four_weeks:1.5, one_three_months:1, still_pending:0.5 }
+  },
+  unsure: {
+    role: { budget_holder:3, champion:1.5, end_user:1 },
+    commit: { paid_renewed:3, loi:2, verbal:1 },
+    source: { repeat_buyer:3, customer_referral:2.5, organic_inbound:2, cold_outreach:1 },
+    urgency: { same_day:1.5, within_week:1.2, one_four_weeks:1.0, one_three_months:0.7, still_pending:0.5 }
+  }
 };
-const CTX_W = { channel:0.60, role:0.40 };
-const thresholds = { d2c:40, b2b2c:8, b2b:5, unsure:10 };
-
-const PULL_CHANNELS = ['referral','organic','community','partner','marketplace'];
-
-const labelMap = {
-  channel:{referral:'referral',organic:'organic',community:'community',marketplace:'marketplace',partner:'channel partner',event:'event/expo',outbound:'outbound',paid_mktg:'paid marketing'},
-  role:{individual:'an individual',org_buyer:'a business buyer',institution:'an institution',champion:'a champion'},
-  motion:{d2c:'D2C',b2b:'B2B',b2b2c:'B2B2C'}
+ 
+// ── PATTERN CONFIDENCE THRESHOLDS ──
+const thresholds = { d2c:40, b2b2c:20, b2b:10, unsure:20 };
+ 
+// ── SIGNAL PATTERN DATA ──
+const signalPatterns = {
+  hardware: {
+    real: ['reorder','repeat','co-discovery','poc budget','referral from engineer','trains their team'],
+    noise: ['conference','no follow','many meetings','no loi','free pilot','decision maker','doesnt spend']
+  },
+  edtech: {
+    real: ['completion','re-enrol','refers another','employer pays','outcome proof','promotion'],
+    noise: ['high enrolment','low completion','praise without referral','pilot 5 users','viral post','never logs']
+  },
+  hybrid: {
+    real: ['builds something','shows publicly','re-orders','community referral','outcome goes viral','buys kit and curriculum'],
+    noise: ['curriculum never activated','no hardware','budget at school board','disengage after week']
+  }
 };
-
-function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function mag(s){ const n = parseInt(s.magnitude, 10); return (isNaN(n) || n < 0) ? 0 : n; }
-// For B2B (org_buyer) and B2B2C (institution) buyers, one signal = one transaction,
-// no matter how many units shipped. Only individual (D2C) buyers count by unit volume.
-function txnMag(s){
-  if (s.who === 'org_buyer' || s.who === 'institution') return 1;
-  return mag(s);
-}
-
+ 
 // ── UI HELPERS ──
 function tSel(btn, key, val) {
   btn.closest('.opt-grid').querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
@@ -632,9 +587,8 @@ function tSel(btn, key, val) {
   if (key === 'type') renderRevOptions(val);
   if (key === 'revenue') handleRevNone(val);
 }
-
+ 
 function multiSel(btn, val) {
-  if (btn.classList.contains('disabled')) return;
   btn.classList.toggle('multi-selected');
   if (btn.classList.contains('multi-selected')) {
     if (!ts.rev_sources.includes(val)) ts.rev_sources.push(val);
@@ -642,23 +596,24 @@ function multiSel(btn, val) {
     ts.rev_sources = ts.rev_sources.filter(v => v !== val);
   }
 }
-
+ 
 function handleRevNone(val) {
+  const block = document.getElementById('rev-source-block');
   const opts = document.querySelectorAll('#rs-opts .opt-btn');
   if (val === 'none') {
-    opts.forEach(b => { b.classList.add('disabled'); b.classList.remove('multi-selected'); });
+    opts.forEach(b => b.classList.add('disabled'));
     ts.rev_sources = [];
   } else {
     opts.forEach(b => b.classList.remove('disabled'));
   }
 }
-
+ 
 function setBias(btn, idx, val) {
   btn.closest('.bias-opts').querySelectorAll('.bias-opt').forEach(b => b.className = 'bias-opt');
   btn.classList.add('sel-' + val);
   ts.biasAnswers[idx] = val;
 }
-
+ 
 function updateDots(cur) {
   for (let i = 0; i < 5; i++) {
     const d = document.getElementById('dot' + i);
@@ -667,10 +622,10 @@ function updateDots(cur) {
     else if (i === cur) d.classList.add('active');
   }
 }
-
+ 
 function tNext(from) {
+  if (from === 0 && (!ts.type || !ts.gtm)) return;
   if (from === 0) {
-    if (!ts.type || !ts.gtm) return;
     const container = document.getElementById('sigs-container');
     container.innerHTML = '';
     ts.sigCount = 0;
@@ -678,11 +633,7 @@ function tNext(from) {
     container.appendChild(createSigCard(0));
     ts.sigCount = 1;
   }
-  if (from === 1) {
-    collectSigs();
-    if (ts.signals.length === 0) { document.getElementById('sig-warn').style.display = 'block'; return; }
-    document.getElementById('sig-warn').style.display = 'none';
-  }
+  if (from === 1) collectSigs();
   if (from === 2 && !ts.revenue) return;
   if (from === 3) buildResults();
   document.getElementById('s' + from).classList.remove('active');
@@ -690,22 +641,16 @@ function tNext(from) {
   updateDots(from + 1);
   document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
+ 
 function tBack(from) {
   document.getElementById('s' + from).classList.remove('active');
   document.getElementById('s' + (from - 1)).classList.add('active');
   updateDots(from - 1);
-  document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
+ 
 function restart() {
-  ts.type=null;ts.gtm=null;ts.domain='';ts.revenue=null;ts.rev_sources=[];
+  ts.type=null;ts.gtm=null;ts.revenue=null;ts.rev_sources=[];
   ts.signals=[];ts.biasAnswers=[null,null,null,null,null,null];ts.sigCount=0;
-  const di=document.getElementById('domain-input'); if(di) di.value='';
-  document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('selected','multi-selected','disabled'));
-  document.querySelectorAll('.bias-opt').forEach(b=>b.className='bias-opt');
-  const w=document.getElementById('sig-warn'); if(w) w.style.display='none';
-  document.getElementById('rs-opts').innerHTML='';
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('s0').classList.add('active');
   updateDots(0);
@@ -717,7 +662,7 @@ function restart() {
   ts.sigCount = 1;
   document.getElementById('tool').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
+ 
 // ── REVENUE OPTIONS ──
 function renderRevOptions(type) {
   const container = document.getElementById('rs-opts');
@@ -731,7 +676,7 @@ function renderRevOptions(type) {
     container.appendChild(btn);
   });
 }
-
+ 
 // ── SIGNAL CARD ──
 function createSigCard(n) {
   const div = document.createElement('div');
@@ -739,69 +684,67 @@ function createSigCard(n) {
   div.id = 'sig-' + n;
   div.innerHTML = `
     <div class="sig-num mono">Signal ${n+1}</div>
-    <textarea class="sig-input" rows="2" placeholder="e.g. A school signed up after a trial workshop. Or: 8 parents referred friends but none have paid yet." id="st-${n}"></textarea>
+    <textarea class="sig-input" rows="2" placeholder="e.g. A school principal replied asking for a demo. Or: 3 meetings but no LOI yet." id="st-${n}"></textarea>
     <div class="sig-row">
       <div>
         <div class="mini-lbl">Who gave this signal?</div>
         <select class="mini-sel" id="sw-${n}">
           <option value="">Select</option>
-          <option value="individual">An individual, buying for themselves</option>
-          <option value="org_buyer">A decision-maker buying for their organisation</option>
-          <option value="institution">An institution buying for the people it serves</option>
-          <option value="champion">Champion (internal advocate, no budget)</option>
+          <option value="budget_holder">Budget holder (decision maker)</option>
+          <option value="champion">Champion (internal advocate)</option>
+          <option value="end_user">End user (student, learner, operator)</option>
         </select>
       </div>
       <div>
         <div class="mini-lbl">Level of commitment</div>
         <select class="mini-sel" id="sc-${n}">
           <option value="">Select</option>
-          <option value="renewed">Renewed (bought again / repeat order)</option>
-          <option value="paid">Paid (first time)</option>
-          <option value="loi">LOI or written confirmation</option>
-          <option value="verbal">Verbal interest only</option>
-          <option value="none">No commitment yet</option>
+          <option value="paid_renewed">Paid and renewed</option>
+          <option value="loi">LOI signed or written confirmation</option>
+          <option value="verbal">Verbal commitment only</option>
         </select>
       </div>
     </div>
     <div class="sig-row">
       <div>
-        <div class="mini-lbl">Acquisition channel</div>
+        <div class="mini-lbl">How did you find them?</div>
         <select class="mini-sel" id="ss-${n}">
           <option value="">Select</option>
-          <option value="referral">Referral</option>
-          <option value="organic">Organic</option>
-          <option value="community">Community</option>
-          <option value="marketplace">Marketplace</option>
-          <option value="partner">Channel partner</option>
-          <option value="event">Event / Expo</option>
-          <option value="outbound">Outbound</option>
-          <option value="paid_mktg">Paid marketing</option>
+          <option value="repeat_buyer">Repeat buyer</option>
+          <option value="customer_referral">Customer referral</option>
+          <option value="organic_inbound">Organic inbound</option>
+          <option value="cold_outreach">Cold outreach</option>
         </select>
       </div>
       <div>
-        <div class="mini-lbl">When did this happen?</div>
-        <select class="mini-sel" id="sr-${n}">
+        <div class="mini-lbl">How fast did they respond?</div>
+        <select class="mini-sel" id="su-${n}">
           <option value="">Select</option>
-          <option value="this_month">This month</option>
-          <option value="last_3_months">Last 3 months</option>
-          <option value="older">Older</option>
+          <option value="same_day">Same day</option>
+          <option value="within_week">Within a week</option>
+          <option value="one_four_weeks">1 to 4 weeks</option>
+          <option value="one_three_months">1 to 3 months</option>
+          <option value="still_pending">Still pending or no response</option>
         </select>
       </div>
     </div>
     <div style="margin-top:6px;">
-      <div class="mini-lbl">How much demand does this represent? <span style="text-transform:none;letter-spacing:0;color:var(--muted);">(units or people — for business/institution buyers, each signal counts as one deal regardless)</span></div>
-      <input type="number" min="0" inputmode="numeric" class="mini-sel" id="sn-${n}" placeholder="e.g. 8" style="max-width:240px;">
+      <div class="mini-lbl">How many signals like this have you received?</div>
+      <select class="mini-sel" id="sn-${n}" style="max-width:200px;">
+        <option value="">Select</option>
+        ${getCountOptions()}
+      </select>
     </div>`;
   return div;
 }
-
+ 
 function addSig() {
-  if (ts.sigCount >= MAX_SIGNALS) return;
+  if (ts.sigCount >= 5) return;
   document.getElementById('sigs-container').appendChild(createSigCard(ts.sigCount));
   ts.sigCount++;
-  if (ts.sigCount >= MAX_SIGNALS) document.getElementById('add-sig-btn').style.display = 'none';
+  if (ts.sigCount >= 5) document.getElementById('add-sig-btn').style.display = 'none';
 }
-
+ 
 function collectSigs() {
   ts.signals = [];
   for (let i = 0; i < ts.sigCount; i++) {
@@ -811,125 +754,139 @@ function collectSigs() {
       text: t,
       who: document.getElementById('sw-' + i)?.value || '',
       commitment: document.getElementById('sc-' + i)?.value || '',
-      channel: document.getElementById('ss-' + i)?.value || '',
-      recency: document.getElementById('sr-' + i)?.value || '',
-      magnitude: document.getElementById('sn-' + i)?.value || ''
+      source: document.getElementById('ss-' + i)?.value || '',
+      urgency: document.getElementById('su-' + i)?.value || '',
+      count: document.getElementById('sn-' + i)?.value || ''
     });
   }
 }
-
-// ── SCORING ENGINE (base × modifier, no time) ──
+ 
+// ── SCORING ENGINE ──
 function scoreSignal(s) {
-  const c = SUB.commit[s.commitment] ?? 0;
-  if (c === 0) return 0;
-  const ch = SUB.channel[s.channel] ?? 0;
-  const r  = SUB.role[s.who] ?? 0;
-  const context = CTX_W.channel*ch + CTX_W.role*r;
-  return Math.round(100 * c * (0.5 + 0.5*context) * 10) / 10;
+  const gtm = ts.gtm === 'unsure' ? 'unsure' : ts.gtm;
+  const w = weights[gtm] || weights.unsure;
+  const r = w.role[s.who] || 1;
+  const c = w.commit[s.commitment] || 0.5;
+  const src = w.source[s.source] || 1;
+  const u = w.urgency[s.urgency] || 0.5;
+  return Math.round(r * c * src * u * 10) / 10;
 }
-
-// ── DEMAND CATEGORY ──
-function categorize(s) {
-  if (s.commitment === 'paid' || s.commitment === 'renewed') return 'proven';
-  const pull = PULL_CHANNELS.includes(s.channel) || s.commitment === 'loi';
-  if (pull) return 'emerging';
-  if (s.commitment === 'verbal') return 'weak';
+ 
+function getVerdict(score, rank) {
+  if (rank <= 2) return 'real';
+  if (score >= 5) return 'weak';
   return 'noise';
 }
-
+ 
 function getFlags(s) {
   const flags = [];
-  if (s.recency === 'older') flags.push('Older than 3 months — still true, or history?');
-  if (s.commitment === 'renewed') flags.push('They came back — strongest signal you have');
-  if ((s.channel === 'outbound' || s.channel === 'paid_mktg') && (s.commitment === 'verbal' || s.commitment === 'none')) flags.push('You pushed, they shrugged');
-  if (s.who === 'champion') flags.push('Advocate, not the buyer');
-  if (s.commitment === 'verbal') flags.push('Interest, not money');
-  if (s.commitment === 'loi') flags.push('Promised, not yet paid');
-  if (PULL_CHANNELS.includes(s.channel) && s.commitment !== 'paid' && s.commitment !== 'renewed') flags.push('Pull you did not pay for');
+  if (s.source === 'cold_outreach' && s.commitment === 'verbal') flags.push('Push signal, not pull');
+  if (s.urgency === 'still_pending') flags.push('No urgency signal');
+  if (s.who === 'champion' && s.commitment !== 'paid_renewed') flags.push('Champion without budget holder');
+  if (s.commitment === 'loi' && s.urgency === 'still_pending') flags.push('LOI with no follow-through');
+  const textL = s.text.toLowerCase();
+  const data = signalPatterns[ts.type] || signalPatterns.hybrid;
+  const matchesNoise = data.noise.some(n => n.split(' ').filter(w=>w.length>4).some(w=>textL.includes(w)));
+  if (matchesNoise) flags.push('Matches known noise pattern');
   return flags;
 }
-
-// ── CONCENTRATION (one formula, two weightings) ──
-function concentrationOf(signals, weightFn) {
-  if (!signals.length) return { value: 0, dist: [], n: 0 };
-  const buckets = {};
-  let total = 0;
-  signals.forEach(s => {
-    const key = (s.who || '?') + '|' + (s.channel || '?');
-    const w = weightFn(s);
-    buckets[key] = (buckets[key] || 0) + w;
-    total += w;
+ 
+function matchesRealPattern(s) {
+  const textL = s.text.toLowerCase();
+  const data = signalPatterns[ts.type] || signalPatterns.hybrid;
+  return data.real.some(r => r.split(' ').filter(w=>w.length>4).some(w=>textL.includes(w)));
+}
+ 
+// ── PATTERN CONFIDENCE ──
+// ── COUNT OPTIONS BY GTM MOTION ──
+function getCountOptions() {
+  const gtm = ts.gtm || 'unsure';
+  if (gtm === 'b2b') {
+    return `<option value="0_2">0 to 2</option>
+            <option value="3_5">3 to 5</option>
+            <option value="6_9">6 to 9</option>
+            <option value="10_plus">10 and above</option>`;
+  }
+  if (gtm === 'b2b2c') {
+    return `<option value="0_5">0 to 5</option>
+            <option value="6_10">6 to 10</option>
+            <option value="11_15">11 to 15</option>
+            <option value="16_20">16 to 20</option>
+            <option value="20_above">20 and above</option>`;
+  }
+  // D2C and unsure
+  return `<option value="0_10">0 to 10</option>
+          <option value="10_20">10 to 20</option>
+          <option value="20_30">20 to 30</option>
+          <option value="30_40">30 to 40</option>
+          <option value="40_plus">40 and above</option>`;
+}
+ 
+// ── COUNT MIDPOINTS BY GTM MOTION ──
+function getCountMidpoint(countVal, gtm) {
+  const maps = {
+    b2b:    { '0_2':1, '3_5':4, '6_9':7, '10_plus':12 },
+    b2b2c:  { '0_5':2, '6_10':8, '11_15':13, '16_20':18, '20_above':22 },
+    d2c:    { '0_10':5, '10_20':15, '20_30':25, '30_40':35, '40_plus':45 },
+    unsure: { '0_10':5, '10_20':15, '20_30':25, '30_40':35, '40_plus':45 }
+  };
+  const map = maps[gtm] || maps.unsure;
+  return map[countVal] || 0;
+}
+ 
+function calcPatternConfidence(realSignals) {
+  const gtm = ts.gtm === 'unsure' ? 'b2b2c' : ts.gtm;
+  const threshold = thresholds[gtm] || 20;
+  let totalCount = 0;
+  realSignals.forEach(s => {
+    totalCount += getCountMidpoint(s.count, gtm);
   });
-  const dist = Object.entries(buckets).map(([k, v]) => ({ key: k, share: v/total })).sort((a, b) => b.share - a.share);
-  const N = dist.length;
-  const hhi = dist.reduce((a, b) => a + b.share*b.share, 0);
-  let norm = N >= 2 ? (hhi - 1/N) / (1 - 1/N) : 1.0;
-  return { value: Math.max(0, Math.min(1, norm)), dist, n: N };
+  const pct = Math.min(100, Math.round((totalCount / threshold) * 100));
+  return { pct, threshold, gtm };
 }
-const W_BREADTH = () => 1;
-const W_LEVER   = (s) => Math.max(1, txnMag(s));
-
-function bucketLabel(key) {
-  if (!key) return 'your strongest buyer-and-channel';
-  const [who, ch] = key.split('|');
-  return (labelMap.role[who] || 'an unspecified buyer') + ' via ' + (labelMap.channel[ch] || 'an unspecified channel');
+ 
+function patternInterpretation(sigQualityHigh, patternHigh, detectedMotion, selectedMotion) {
+  const mismatch = detectedMotion !== selectedMotion && selectedMotion !== 'unsure';
+  if (sigQualityHigh && patternHigh) {
+    return { title: 'PMF signal detected', body: 'Your GTM has a repeatable foundation. You have found the right buyer and you have volume. Build around this buyer profile and this channel. Protect and scale what is working.', cls: 'strong', mismatch };
+  }
+  if (sigQualityHigh && !patternHigh) {
+    return { title: 'Right buyer. Find more.', body: 'You have found the right type of buyer but you do not have enough of them yet to confirm a pattern. Find more people who look exactly like this one. Do not change what you are doing. Change the volume.', cls: 'mixed', mismatch };
+  }
+  if (!sigQualityHigh && patternHigh) {
+    return { title: 'Wrong buyers. Volume is not the problem.', body: 'You are talking to a lot of people but the wrong ones. Volume is not your problem. Buyer targeting is the real issue. Stop and requalify who you are spending time with.', cls: 'weak', mismatch };
+  }
+  return { title: 'Too early to conclude anything', body: 'You need more conversations with better-qualified buyers before any pattern emerges. Do not pivot yet. Get more at-bats first, with more intentional targeting.', cls: 'weak', mismatch };
 }
-
-// ── POSITION (2x2: proven demand x breadth) ──
-const POSITIONS = {
-  found: { name: "You've found it", cls: 'strong',
-    diag: "Your paying demand is converging on one buyer and one channel. This is a direction, not a data point." },
-  unfocused: { name: "Real but unfocused", cls: 'mixed',
-    diag: "You have genuine, paying demand, but it is scattered across different buyer types and channels. It feels like traction. It is drift." },
-  soft: { name: "Consistent but soft", cls: 'mixed',
-    diag: "You have a clear, repeated pattern, but no money behind it. Lots of similar interest, nothing proven." },
-  fog: { name: "Too early to read", cls: 'weak',
-    diag: "Scattered signals, little or no proven demand. No shape has emerged yet." }
-};
-
-function getPosition(provenCount, noiseCount, breadthProven, breadthAll, allLen) {
-  const qualityHigh = provenCount >= 1 && provenCount >= noiseCount;
-  let key;
-  if (qualityHigh) key = (provenCount >= 2 && breadthProven >= 0.5) ? 'found' : 'unfocused';
-  else key = (allLen >= 2 && breadthAll >= 0.5) ? 'soft' : 'fog';
-  return Object.assign({ key, qualityHigh }, POSITIONS[key]);
-}
-
-// ── ONE SHARP QUESTION TO CARRY OUT (the founder decides; we only point) ──
-const NEXT_Q = {
-  found:     'Can you close one more buyer in this exact lane without you in the room?',
-  unfocused: 'Pick the lane carrying the most proven demand. Starve the rest for 30 days — what happens?',
-  soft:      'You have interest, not money. What is the smallest thing you could charge for this week?',
-  fog:       'Do not pivot yet. What is the one lane where you could get a single paying signal first?'
-};
-
-// ── GTM MOTION MIX (purely "who", one vote per signal) ──
-function detectMotionMix() {
+ 
+// ── GTM DETECTION ──
+function detectMotion() {
   let d2c=0, b2b=0, b2b2c=0;
   ts.signals.forEach(s => {
-    if (s.who==='individual') d2c++;
-    else if (s.who==='org_buyer') b2b++;
-    else if (s.who==='institution') b2b2c++;
-    // champion / blank: no motion vote
+    if (s.who==='end_user' && ['organic_inbound','customer_referral','repeat_buyer'].includes(s.source)) d2c+=2;
+    if (s.who==='budget_holder') b2b+=2;
+    if (s.who==='budget_holder' && s.commitment==='paid_renewed') b2b2c+=2;
+    if (s.who==='end_user' && s.commitment==='paid_renewed') b2b2c++;
+    if (s.source==='customer_referral') { d2c++; b2b2c++; }
+    if (s.source==='repeat_buyer') { d2c+=2; }
   });
-  const total = d2c + b2b + b2b2c;
-  const raw = [{k:'b2b2c',v:b2b2c},{k:'d2c',v:d2c},{k:'b2b',v:b2b}];
-  const mix = raw.map(x => ({ k:x.k, v:x.v, pct: total ? Math.round(x.v/total*100) : 0 })).sort((a,b)=>b.v-a.v);
-  return { mix, total };
+  if (ts.rev_sources.some(r=>r.toLowerCase().includes('workshop')||r.toLowerCase().includes('camp')||r.toLowerCase().includes('curriculum'))) b2b2c+=3;
+  if (ts.rev_sources.some(r=>r.toLowerCase().includes('unit sale')||r.toLowerCase().includes('kit sale'))) d2c+=2;
+  if (ts.rev_sources.some(r=>r.toLowerCase().includes('licensing')||r.toLowerCase().includes('enterprise'))) b2b+=2;
+  const mx = Math.max(d2c, b2b, b2b2c);
+  if (mx===0) return 'unsure';
+  if (mx===b2b2c) return 'b2b2c';
+  if (mx===b2b) return 'b2b';
+  return 'd2c';
 }
-
-function motionMixInterp(mix, total) {
-  if (!total) return 'Not enough buyer signal to read a motion yet. Tag who your buyers are and the split below fills in.';
-  const top = mix[0], second = mix[1];
-  if (top.pct >= 70) return `Your signals lean ${labelMap.motion[top.k]} (${top.pct}%). Most of your distinct buyer relationships are that one motion.`;
-  const twoSided = (top.pct >= 35 && second && second.pct >= 25);
-  if (twoSided) {
-    const isB2b2c = [top.k, second.k].includes('b2b2c');
-    return `Your buyers split mainly between ${labelMap.motion[top.k]} (${top.pct}%) and ${labelMap.motion[second.k]} (${second.pct}%). ${isB2b2c ? 'A two-sided split like this can be a healthy B2B2C structure — one side pays, the other pulls.' : 'A split like this can mean you are running two motions at once.'}`;
-  }
-  return `Your buyer relationships are spread across motions with no clear lead — distinct buyer types in roughly equal share.`;
-}
-
+ 
+const motionCopy = {
+  b2b2c: {cls:'strong', title:'Signals point toward B2B2C', body:'Institutions are your buyers but end users are generating the pull. Your most durable revenue comes when the institution pays and the learner demands more. Find institutional buyers where end user demand already exists. Do not build that demand from scratch.'},
+  b2b: {cls:'mixed', title:'Signals lean B2B with caution', body:'Institutional interest exists but watch for long sales cycles and seasonal demand. Validate urgency. Does this institution have budget allocated, a timeline, and a person whose job depends on solving this? Without all three, it is interest, not a signal.'},
+  d2c: {cls:'mixed', title:'Signals lean D2C', body:'Individual buyers are responding. Validate whether this is a repeatable acquisition motion or a tight cluster of early adopters who are not representative of the broader market.'},
+  unsure: {cls:'weak', title:'Signals too mixed to read a clear motion', body:'Your signals may be spread across customer types without enough depth in any one. Pick the customer type who has paid, returned, and referred. That is your motion signal.'}
+};
+ 
 // ── BIAS VERDICT ──
 function biasVerdict() {
   const yc = ts.biasAnswers.filter(b=>b==='yes').length;
@@ -939,220 +896,117 @@ function biasVerdict() {
   if (yc>=1) return {cls:'mixed', title:`Moderate bias. ${yc} pattern${yc>1?'s':''} detected.`, body:`${dominant.length>0?'Watch especially for: '+dominant.join(', ')+'.':''} Signal reads are directionally correct but may be over or under-weighted in specific areas.`};
   return {cls:'strong', title:'Low bias interference', body:'You appear to be reading signals with reasonable objectivity. The risk at this stage is overconfidence. Keep asking the questions you are afraid to ask.'};
 }
-
+ 
 // ── UNCOMFORTABLE OUTPUT ──
 function uncomfortableText() {
   const idBias = ts.biasAnswers[0]==='yes';
   const fearBias = ts.biasAnswers[1]==='yes';
   const quietBias = ts.biasAnswers[2]==='yes';
   const workflowBias = ts.biasAnswers[3]==='yes';
-  const reasonBias = ts.biasAnswers[4]==='yes';
   const priceBias = ts.biasAnswers[5]==='yes';
   if (idBias && priceBias) return 'Your customers are buying because of you, not the product. And if a cheaper competitor shows up, they will move. That is not a product business. That is a personal services business wearing a product costume. Until you can answer why a customer who has never met you would still choose you, you do not have a scalable GTM.';
   if (fearBias) return 'There is a question you did not ask in your last customer conversation. You know what it is. The answer to that question is the most important data point you currently do not have. That gap is where your next pivot lives.';
   if (quietBias) return 'Your most real signal is probably the one you are mentioning last. The organic referral. The repeat call. The customer who came back without you asking. That quiet consistency is worth more than any loud one-off. Why is it not the centre of your entire strategy?';
   if (workflowBias) return 'You have customers but not dependent customers. There is a difference between someone who buys and someone who would have to change how they work if you disappeared. Until you have the second kind, you have validation, not traction.';
-  if (reasonBias) return 'Your first customers and your next hundred are buying for different reasons. That is not one market — it is two, and you are reading them as one. Until the reason to buy is the same across both, every growth number you project is built on a pattern that does not actually repeat.';
   return 'The question you are probably not asking: who specifically would be devastated if your product disappeared tomorrow, and are you talking to them every week?';
 }
-
-// ── BAR FILL (strength toward validation — color is the tier, length is the evidence) ──
-// Proven signals fill by how far this single signal moves you toward the GTM threshold,
-// so a real-but-small proven signal shows green but visibly short of full validation.
-function barFill(s, threshold) {
-  const cat = categorize(s);
-  if (cat === 'emerging') return 50;
-  if (cat === 'weak') return 32;
-  if (cat === 'noise') return 16;
-  // proven: this one signal's contribution toward clearing the validation threshold.
-  // Floor keeps any proven signal solidly green; it only reaches full if it alone clears the bar.
-  const contribution = txnMag(s) / (threshold || 1);
-  const pct = Math.round(contribution * 100);
-  return Math.max(55, Math.min(100, pct));
-}
+ 
+// ── BUILD RESULTS ──
 function buildResults() {
-  const scored = ts.signals.map((s, i) => Object.assign({}, s, { score: scoreSignal(s), category: categorize(s), idx: i+1 }));
-  const provenSigs   = scored.filter(s => s.category === 'proven');
-  const emergingSigs = scored.filter(s => s.category === 'emerging');
-  const weakSigs     = scored.filter(s => s.category === 'weak');
-  const noiseSigs    = scored.filter(s => s.category === 'noise');
-  const provenCount = provenSigs.length;
-
-  const breadthProven = concentrationOf(provenSigs, W_BREADTH);
-  const breadthAll = concentrationOf(scored, W_BREADTH);
-
-  const leverBasis = provenSigs.length >= 1 ? provenSigs : scored;
-  // Frequency read: one vote per signal. Share = how often a persona shows up,
-  // NOT unit-volume or value (that comparison needs revenue, which lives in Tool 2).
-  const leverConc = concentrationOf(leverBasis, W_BREADTH);
-  const topKey = leverConc.dist[0] ? leverConc.dist[0].key : null;
-  const topShare = leverConc.dist[0] ? leverConc.dist[0].share : 0;
-  const driverNums = topKey ? leverBasis.filter(s => (s.who+'|'+s.channel)===topKey).map(s=>s.idx) : [];
-
-  const emConc = concentrationOf(emergingSigs, W_BREADTH);
-  const emTopKey = emConc.dist[0] ? emConc.dist[0].key : null;
-  const emNums = emTopKey ? emergingSigs.filter(s => (s.who+'|'+s.channel)===emTopKey).map(s=>s.idx) : [];
-
-  const gtm = ts.gtm || 'unsure';
-  const threshold = thresholds[gtm] || 20;
-  const totalProven = provenSigs.reduce((a, s) => a + txnMag(s), 0);
-  const v = threshold ? Math.min(1, totalProven / threshold) : 0;
-
-  const pos = getPosition(provenCount, weakSigs.length + noiseSigs.length, breadthProven.value, breadthAll.value, scored.length);
-  const confident = pos.key === 'found' && v >= 0.7;
-  if (pos.key === 'unfocused' && provenCount <= 1) {
-    pos.diag = 'You have paying demand, but only one proven signal so far — not yet enough to tell whether it concentrates into a pattern.';
-  }
-
-  // momentum (recency — informational only)
-  const fresh = provenSigs.concat(emergingSigs);
-  let momentumClass = '', momentumText = '';
-  if (fresh.length) {
-    const recent = fresh.filter(s => s.recency === 'this_month').length;
-    const old = fresh.filter(s => s.recency === 'older').length;
-    if (old > fresh.length / 2) { momentumClass = 'aging'; momentumText = 'Momentum: most of your real signals are older — worth confirming they are still happening, not just remembered.'; }
-    else if (recent >= fresh.length / 2 && recent > 0) { momentumClass = 'live'; momentumText = 'Momentum: most of your real signals are recent — this is live, not history.'; }
-    else { momentumText = 'Momentum: a mix of recent and older signals.'; }
-  }
-
-  // ── 1. SCORECARD (tier-driven color, strength-driven length — no number) ──
-  const catTag = { proven:'Proven demand', emerging:'Emerging demand', weak:'Weak signal', noise:'Noise' };
-  const catRtag = { proven:'rtag-real', emerging:'rtag-emerging', weak:'rtag-weak', noise:'rtag-noise' };
-  const catBar  = { proven:'#1D6B4E', emerging:'#5c0fcb', weak:'#BA6010', noise:'#A32D2D' };
+  const scored = ts.signals.map(s=>({...s, score:scoreSignal(s)})).sort((a,b)=>b.score-a.score);
+  const maxScore = 40.5;
+ 
+  // Signal cards
   const sc = document.getElementById('sig-results');
-  sc.innerHTML = '<div class="result-hdr mono">Signal by signal — your evidence</div>';
-  scored.forEach(s => {
+  sc.innerHTML = '<div class="result-hdr mono">Signal by signal breakdown</div>';
+ 
+  ts.signals.forEach((s) => {
+    const score = scoreSignal(s);
+    const rank = scored.findIndex(x=>x.text===s.text) + 1;
+    const verdict = getVerdict(score, rank);
     const flags = getFlags(s);
-    const m = mag(s);
-    const fill = barFill(s, threshold);
-    // For B2B/B2B2C show as transactions; for individuals show as units.
-    const isTxnBuyer = (s.who === 'org_buyer' || s.who === 'institution');
-    let volLabel = '';
-    if (isTxnBuyer) volLabel = '1 transaction' + (m>1?` · ${m} units`:'');
-    else if (m) volLabel = `${m} ${m===1?'unit':'units'}`;
+    const isRealPattern = matchesRealPattern(s);
+    const barPct = Math.round((score/maxScore)*100);
+    const barColor = verdict==='real'?'#1D6B4E':verdict==='weak'?'#BA6010':'#A32D2D';
+    const verdictLabel = verdict==='real'?'Chase more of this':verdict==='weak'?'Needs validation':'Likely noise';
+    const vClass = verdict==='real'?'score-real':verdict==='weak'?'score-weak':'score-noise';
+    const rtagClass = verdict==='real'?'rtag-real':verdict==='weak'?'rtag-weak':'rtag-noise';
+ 
     const div = document.createElement('div');
     div.className = 'sig-result';
     div.innerHTML = `
       <div class="sr-top">
-        <div class="sr-text"><span class="pos-sig-ref mono" style="margin-right:8px;">Signal ${s.idx}</span>${escapeHtml(s.text)}${volLabel?` <span style="color:var(--muted);font-size:11px;">· ${volLabel}</span>`:''}</div>
-        <span class="rtag ${catRtag[s.category]}" style="font-size:11px;padding:4px 10px;">${catTag[s.category]}</span>
+        <div class="sr-text">${s.text}</div>
+        <span class="score-pill ${vClass}">Score ${score} / 40.5</span>
       </div>
-      <div class="bar-track" style="margin:10px 0 ${flags.length?'10px':'2px'};"><div class="bar-fill" style="width:${fill}%;background:${catBar[s.category]};"></div></div>
-      ${flags.length?`<div class="tag-row">${flags.map(f=>`<span class="rtag rtag-flag">${f}</span>`).join('')}</div>`:''}`;
+      <div class="bar-row">
+        <div class="bar-lbl mono">Signal strength</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${barPct}%;background:${barColor};"></div></div>
+        <div class="bar-pct mono">${barPct}%</div>
+      </div>
+      <div class="tag-row">
+        <span class="rtag ${rtagClass}">${verdictLabel}</span>
+        ${isRealPattern?'<span class="rtag rtag-real">Matches real signal pattern</span>':''}
+        ${flags.map(f=>`<span class="rtag rtag-flag">${f}</span>`).join('')}
+      </div>`;
     sc.appendChild(div);
   });
-
-  // ── 2. POSITION (no prescribed next move — the founder decides) ──
-  const cellDefs = [
-    { k:'unfocused', n:'Real but unfocused' }, { k:'found', n:"You've found it" },
-    { k:'fog', n:'Too early to read' },        { k:'soft', n:'Consistent but soft' }
-  ];
-  const mapCells = cellDefs.map(c => `<div class="pos-cell ${c.k===pos.key?'active':''}"><div class="pos-cell-name">${c.n}</div>${c.k===pos.key?'<div class="pos-you mono">&#9670; you are here</div>':''}</div>`).join('');
-  const refSpans = driverNums.map(n => `<span class="pos-sig-ref mono">Signal ${n}</span>`).join(' ');
-  const topPct = Math.round(topShare*100);
-  let driving;
-  if (pos.key === 'found') {
-    driving = `Where your demand keeps showing up: <strong>${bucketLabel(topKey)}</strong>. Your ${provenCount} proven signals (${refSpans}) point to this one buyer-and-channel — it accounts for ${topPct}% of your proven signals. This is your candidate ICP by repeatability.`;
-  } else if (pos.key === 'unfocused') {
-    if (provenCount <= 1) {
-      driving = `You have one proven signal so far (${refSpans}: <strong>${bucketLabel(topKey)}</strong>). Promising, but a single paying data point cannot tell you whether it is a repeatable pattern or a one-off.`;
-    } else {
-      driving = `Your ${provenCount} proven signals fall across ${breadthProven.n} different buyer-and-channel types, so by pattern you are unfocused. The persona showing up most often is <strong>${bucketLabel(topKey)}</strong> (${refSpans}) — ${topPct}% of your proven signals; the rest are spread across other buyers and channels.`;
-    }
-  } else if (pos.key === 'soft') {
-    driving = `Your signals cluster, mostly on <strong>${bucketLabel(topKey)}</strong>${refSpans?(' ('+refSpans+')'):''}, but none have paid. This is a consistent pattern of interest, not of money.`;
-  } else {
-    driving = `Nothing paying has clustered yet. Your ${scored.length} signal${scored.length!==1?'s are':' is'} spread across ${breadthAll.n} buyer-and-channel combination${breadthAll.n!==1?'s':''}, and ${provenCount===0?'none have':'too few have'} reached proven demand to read a pattern.`;
-  }
-  const posSec = document.getElementById('position-section');
-  posSec.innerHTML = `<div class="result-hdr mono">Where your proven demand puts you</div>`;
-  const card = document.createElement('div');
-  card.className = 'position-card pos-' + pos.cls;
-  card.innerHTML = `
-    <div class="position-head">
+ 
+  // Pattern confidence
+  const realSigs = ts.signals.filter((_,i)=>getVerdict(scoreSignal(ts.signals[i]), scored.findIndex(x=>x.text===ts.signals[i].text)+1)==='real');
+  const {pct, threshold, gtm} = calcPatternConfidence(realSigs);
+  const sigQualityHigh = realSigs.length >= 1 && realSigs[0] && scoreSignal(realSigs[0]) >= 10;
+  const patternHigh = pct >= 50;
+  const detectedMotion = detectMotion();
+  const selectedMotion = ts.gtm;
+  const interp = patternInterpretation(sigQualityHigh, patternHigh, detectedMotion, selectedMotion);
+  const gtmLabel = {d2c:'D2C',b2b:'B2B',b2b2c:'B2B2C',unsure:'unclear'}[gtm]||gtm.toUpperCase();
+  const detectedLabel = {d2c:'D2C',b2b:'B2B',b2b2c:'B2B2C',unsure:'unclear'}[detectedMotion]||detectedMotion;
+ 
+  const pSec = document.getElementById('pattern-section');
+  pSec.innerHTML = `<div class="result-hdr mono">Pattern confidence score</div>`;
+  const pCard = document.createElement('div');
+  pCard.className = 'pattern-card';
+  pCard.innerHTML = `
+    <div class="pattern-top">
       <div>
-        <div class="position-name serif">${pos.name}</div>
-        <div class="position-diag">${pos.diag}</div>
+        <div class="pattern-label">On your selected ${gtmLabel} path</div>
+        <div class="pattern-score-big serif">${pct}%</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;">of ${threshold} ${gtmLabel==='D2C'?'paying customers':gtmLabel==='B2B'?'paid institutions':'paid institutions'} threshold</div>
       </div>
-      <span class="conf-pill ${confident?'conf-act':'conf-validate'}">${confident?'Enough to act on':'Validate further'}</span>
+      <span class="score-pill ${pct>=70?'score-real':pct>=35?'score-weak':'score-noise'}">${pct>=70?'PMF signal':pct>=35?'Building pattern':'Early stage'}</span>
     </div>
-    <div class="pos-axislbl">Up = demand is paid &nbsp;·&nbsp; Right = proven signals share one buyer + channel</div>
-    <div class="pos-map">${mapCells}</div>
-    ${momentumText?`<div class="pos-momentum mono ${momentumClass}">${momentumText}</div>`:''}
-    <div class="pos-block"><span class="mono">What is putting you here</span><div class="pos-block-body">${driving}</div></div>
-    ${(pos.key==='found'||(pos.key==='unfocused'&&provenCount>1))?`<div class="pos-note mono">This reads how often each buyer type shows up — not how much revenue each brings. A rare deal can still be your biggest earner. Revenue weighting comes in the next tool.</div>`:''}
-    <div class="pos-next"><span class="mono">The question to go answer next</span><div class="pos-next-body">${NEXT_Q[pos.key]}</div></div>`;
-  posSec.appendChild(card);
-
-  // ── 3. EMERGING DEMAND (leading indicator) ──
-  const emSec = document.getElementById('emerging-section');
-  emSec.innerHTML = `<div class="result-hdr mono">Emerging demand — your leading indicator</div>`;
-  if (emergingSigs.length === 0) {
-    emSec.innerHTML += `<div class="emerging-empty">No emerging demand on record — no unsolicited pull (referrals, organic inbound, community, proposal requests) yet. Pull is the cheapest demand you will ever get, and right now there is none showing up.</div>`;
-  } else {
-    const emRefs = emNums.map(n=>`<span class="pos-sig-ref mono">Signal ${n}</span>`).join(' ');
-    const emTopCount = emTopKey ? emergingSigs.filter(s=>(s.who+'|'+s.channel)===emTopKey).length : 0;
-    const emDist = emConc.n >= 2 ? `<div style="margin-top:0.85rem;">` + emConc.dist.slice(0,4).map(d=>`
-      <div class="dist-row"><div class="dist-lbl">${bucketLabel(d.key)}</div><div class="dist-track"><div class="dist-fill" style="width:${Math.round(d.share*100)}%;"></div></div><div class="dist-pct mono">${Math.round(d.share*100)}%</div></div>`).join('') + `</div>` : '';
-    emSec.innerHTML += `<div class="emerging-card">
-      <div class="ec-title">${emergingSigs.length} emerging signal${emergingSigs.length!==1?'s':''} · pull you did not pay for, not yet money</div>
-      <div class="ec-body">The pull is showing up most often on <strong>${bucketLabel(emTopKey)}</strong> (${emRefs}${emTopCount>1?`, across ${emTopCount} signals`:''}). This is where your next proven demand most likely comes from. It is pull, not payment — until one of these converts to money, it stays a leading indicator, not proof.</div>
-      ${emDist}
-    </div>`;
-  }
-
-  // ── 4. MOTION MIX ──
-  const mmData = detectMotionMix();
-  const mmColors = { b2b2c:'#5c0fcb', d2c:'#1D6B4E', b2b:'#BA6010' };
-  const mmBars = mmData.mix.map(m => `
-    <div class="mm-row">
-      <div class="mm-lbl">${labelMap.motion[m.k]}</div>
-      <div class="mm-track"><div class="mm-fill" style="width:${m.pct}%;background:${mmColors[m.k]};"></div></div>
-      <div class="mm-pct mono">${m.pct}%</div>
-    </div>`).join('');
-  const selected = ts.gtm;
-  const detectedTop = mmData.total ? mmData.mix[0].k : 'unsure';
-  let mismatchHtml = '';
-  if (selected && selected !== 'unsure' && mmData.total && detectedTop !== selected && mmData.mix[0].pct >= 45) {
-    mismatchHtml = `<div class="motion-mismatch"><span class="mono">Motion mismatch</span>You selected <strong>${selected.toUpperCase()}</strong> in Step 1, but your buyers lean most toward <strong>${labelMap.motion[detectedTop]}</strong>. Worth examining before your next decision.</div>`;
-  }
-  document.getElementById('motion-out').innerHTML = `${mmBars}<div class="mm-interp">${motionMixInterp(mmData.mix, mmData.total)}</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:0.75rem;letter-spacing:0.03em;">Share of your distinct buyer relationships, one vote per signal.</div>${mismatchHtml}`;
-
-  // ── 5. BIAS ──
+    <div class="bar-row">
+      <div class="bar-lbl mono">Pattern</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${pct>=70?'#1D6B4E':pct>=35?'#BA6010':'#A32D2D'};"></div></div>
+      <div class="bar-pct mono">${pct}%</div>
+    </div>
+    <div class="pattern-interp"><strong>${interp.title}.</strong> ${interp.body}</div>
+    ${interp.mismatch ? `<div class="motion-mismatch"><span class="mono">Motion mismatch detected</span>You selected <strong>${selectedMotion.toUpperCase()}</strong> in Step 1, but your signals point toward <strong>${detectedLabel}</strong>. Pattern confidence is calculated against your selected path. If you switch to ${detectedLabel}, your threshold and confidence score will change. This gap is worth examining before your next decision.</div>` : ''}`;
+  pSec.appendChild(pCard);
+ 
+  // GTM motion
+  const m = detectedMotion;
+  const mv = motionCopy[m] || motionCopy.unsure;
+  document.getElementById('motion-out').innerHTML = `<div class="verdict ${mv.cls}"><div class="verdict-title mono">${mv.title}</div><div class="verdict-body">${mv.body}</div></div>`;
+ 
+  // Bias
   const bv = biasVerdict();
   document.getElementById('bias-out').innerHTML = `<div class="verdict ${bv.cls}"><div class="verdict-title mono">${bv.title}</div><div class="verdict-body">${bv.body}</div></div>`;
-
-  // ── 6. UNCOMFORTABLE ──
+ 
+  // Uncomfortable
   document.getElementById('uncomfortable-out').innerHTML = `<div class="uncomfortable-box"><div class="uncomfortable-lbl mono">What this tool will not let you hide from</div><div class="uncomfortable-text">${uncomfortableText()}</div></div>`;
-
-  // ── SUMMARY ──
-  document.getElementById('res-sub').textContent = `${ts.signals.length} signal${ts.signals.length!==1?'s':''} · ${provenCount} proven, ${emergingSigs.length} emerging, ${weakSigs.length} weak, ${noiseSigs.length} noise · "${pos.name}".`;
-
-  // ── DATA COLLECTION (anonymous) ──
-  submitData();
+ 
+  const realCount = realSigs.length;
+  document.getElementById('res-sub').textContent = `${ts.signals.length} signal${ts.signals.length!==1?'s':''} analysed. ${realCount} real signal${realCount!==1?'s':''} identified. Pattern confidence on your selected ${gtmLabel} path: ${pct}%.`;
 }
-
-// Sends an anonymous record of the responses to Formspree.
-// 1. Sign up at formspree.io, create a form, copy the endpoint it gives you.
-// 2. Paste it below in place of YOUR_FORM_ID. Until then this is a no-op.
-function submitData() {
-  const ENDPOINT = "https://formspree.io/f/xrevaogr";
-  if (ENDPOINT.includes("YOUR_FORM_ID")) return; // not configured yet — does nothing
-  fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify({
-      startup_type: ts.type,
-      domain: ts.domain,
-      gtm_motion: ts.gtm,
-      revenue_answer: ts.revenue,
-      revenue_sources: ts.rev_sources.join(", "),
-      signals: JSON.stringify(ts.signals),
-      bias_answers: ts.biasAnswers.join(", ")
-    })
-  }).catch(() => {}); // fails silently — never blocks the readout
-}
-
+ 
+// ── INIT ── signal cards built in tNext(0) after GTM is confirmed
 </script>
 </body>
 </html>
+ 
+
+
+
+
