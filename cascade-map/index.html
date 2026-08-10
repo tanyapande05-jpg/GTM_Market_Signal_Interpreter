@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Pivot Cascade Map — GTM Signal Lab</title>
+<meta name="description" content="Pull one GTM lever and watch the cascade: the delays, dependencies and economic exposure of a pivot. Then map your own. Built from a real hardware founder journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F2EC; --ink:#0F0E0C; --muted:#7A7468; --border:#D8D4CB;
+  --accent:#5c0fcb; --accent-dark:#3d0a8a; --accent-bg:#f0e8ff;
+  --green:#1D6B4E; --green-bg:#E8F2EC;
+  --blue:#1A4F7A; --blue-bg:#E4EEF7;
+  --orange:#BA6010; --orange-bg:#FAF0E4;
+  --red:#A32D2D; --red-bg:#FAEBEB;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Geist',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+.serif{font-family:'Instrument Serif',serif;font-weight:400;}
+.mono{font-family:'DM Mono',monospace;}
+a{color:var(--ink);}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+header{border-bottom:1px solid var(--border);}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.nav-brand{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--muted);text-decoration:none;}
+.nav-links a:hover{color:var(--ink);}
+
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--border);}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
+.section-label::before{content:"";width:24px;height:1px;background:var(--muted);display:inline-block;}
+.hero h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.08;letter-spacing:-0.01em;max-width:760px;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{margin-top:1.4rem;max-width:640px;color:var(--muted);font-size:1.02rem;}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.6rem;}
+.tool-tag{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--border);border-radius:2px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;}
+
+.legend{padding:34px 0;border-bottom:1px solid var(--border);}
+.legend-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:6px;}
+.legend-card{border:1px solid var(--border);border-radius:2px;padding:14px 16px;background:#fff;}
+.legend-band{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:8px;}
+.legend-card p{font-size:0.82rem;color:var(--muted);line-height:1.5;}
+.b-fast{background:var(--green-bg);color:var(--green);}
+.b-med{background:var(--blue-bg);color:var(--blue);}
+.b-slow{background:var(--orange-bg);color:var(--orange);}
+.b-struct{background:var(--red-bg);color:var(--red);}
+.legend-note{font-size:0.85rem;color:var(--muted);max-width:680px;margin-top:18px;}
+.legend-note em{font-family:'Instrument Serif',serif;font-size:1.02rem;color:var(--ink);}
+
+.mode-row{display:flex;gap:0;margin-top:28px;border:1px solid var(--border);border-radius:2px;overflow:hidden;width:fit-content;background:#fff;}
+.mode-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 22px;border:none;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;}
+.mode-btn + .mode-btn{border-left:1px solid var(--border);}
+.mode-btn.sel{background:var(--ink);color:var(--paper);}
+.mode-btn:hover:not(.sel){color:var(--ink);}
+.mode-hint{font-size:.82rem;color:var(--muted);margin-top:10px;max-width:640px;}
+
+.tool-section{padding:56px 0 80px;}
+.tool-frame{border:1px solid var(--border);border-radius:2px;background:#fff;margin-top:22px;overflow:hidden;}
+.frame-head{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--paper);gap:12px;flex-wrap:wrap;}
+.frame-step{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.frame-dots{display:flex;gap:6px;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:background .2s;}
+.dot.on{background:var(--accent);}
+.screen{display:none;padding:36px 24px 44px;}
+.screen.active{display:block;animation:fadein .35s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.t-title{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.15;margin-bottom:.6rem;}
+.t-sub{color:var(--muted);font-size:.95rem;max-width:640px;margin-bottom:1.8rem;}
+.t-sub strong{font-weight:500;color:var(--ink);}
+
+.lever-row{margin-bottom:24px;}
+.lever-name{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.lever-big{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-right:10px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{font-family:'Geist',sans-serif;font-weight:300;font-size:.85rem;padding:8px 14px;border:1px solid var(--border);border-radius:2px;background:#fff;cursor:pointer;transition:all .15s;color:var(--ink);}
+.chip:hover{border-color:var(--ink);}
+.chip.sel{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.chip-ghost{cursor:default;color:var(--muted);border-style:dashed;opacity:0.7;}
+.chip-ghost:hover{border-color:var(--border);}
+.seed-note{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:2px;background:var(--accent-bg);padding:12px 16px;font-size:.85rem;color:var(--accent-dark);margin-bottom:26px;max-width:680px;}
+
+.lever-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.ltab{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--border);border-radius:2px;background:#fff;cursor:pointer;color:var(--muted);transition:all .15s;}
+.ltab:hover{color:var(--ink);border-color:var(--ink);}
+.ltab.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
+.pivot-cards{display:grid;gap:12px;}
+.pcard{text-align:left;border:1px solid var(--border);border-radius:2px;background:#fff;padding:18px 20px;cursor:pointer;transition:all .15s;display:block;width:100%;}
+.pcard:hover{border-color:var(--accent);background:var(--accent-bg);}
+.pcard-route{font-family:'Instrument Serif',serif;font-size:1.25rem;line-height:1.3;}
+.pcard-route .arrow{color:var(--accent);padding:0 6px;}
+.pcard-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap;}
+.flagship{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;background:var(--accent);color:#fff;padding:2px 8px;border-radius:2px;margin-left:10px;vertical-align:middle;}
+
+.cascade-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:8px;}
+.cascade-route{font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;}
+.cascade-route .arrow{color:var(--accent);}
+.replay{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);background:#fff;border-radius:2px;padding:8px 14px;cursor:pointer;color:var(--muted);}
+.replay:hover{border-color:var(--ink);color:var(--ink);}
+.wave{margin-top:34px;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;}
+.wave.shown{opacity:1;transform:none;}
+.wave-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:10px;}
+.wave-num{font-family:'Instrument Serif',serif;font-size:1.7rem;color:var(--accent);}
+.wave-title{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
+.node{border:1px solid var(--border);border-radius:2px;background:#fff;padding:14px 16px;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;}
+.node.shown{opacity:1;transform:none;}
+.node-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;}
+.node-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.node-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap;}
+.node p{font-size:.86rem;line-height:1.55;}
+.node p strong{font-weight:500;}
+.founder-note{border:1px solid var(--border);border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:2px;padding:14px 18px;margin-top:14px;font-size:.88rem;color:var(--accent-dark);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;}
+.founder-note.shown{opacity:1;transform:none;}
+.founder-note .fn-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:4px;}
+.founder-note em{font-family:'Instrument Serif',serif;font-size:1.02rem;}
+
+.out-block{margin-top:52px;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;}
+.out-block.shown{opacity:1;transform:none;}
+.out-title{font-family:'Instrument Serif',serif;font-size:1.5rem;margin-bottom:4px;}
+.out-sub{color:var(--muted);font-size:.88rem;margin-bottom:20px;max-width:640px;}
+.tl{border:1px solid var(--border);border-radius:2px;background:#fff;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tl-inner{min-width:640px;}
+.tl-axis{display:grid;grid-template-columns:150px repeat(6,1fr);border-bottom:1px solid var(--border);}
+.tl-axis span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 8px;border-left:1px solid var(--border);}
+.tl-axis span:first-child{border-left:none;}
+.tl-row{display:grid;grid-template-columns:150px repeat(6,1fr);align-items:center;border-bottom:1px solid var(--border);min-height:44px;}
+.tl-row:last-child{border-bottom:none;}
+.tl-label{font-size:.78rem;color:var(--ink);padding:8px 10px;line-height:1.35;}
+.tl-track{grid-column:2/8;display:grid;grid-template-columns:repeat(6,1fr);align-self:stretch;position:relative;}
+.tl-cell{border-left:1px solid var(--border);}
+.tl-bar{position:absolute;top:50%;transform:translateY(-50%);height:12px;border-radius:2px;min-width:12px;}
+.tl-foot{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-top:1px solid var(--border);}
+
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cost-card{border:1px solid var(--border);border-radius:2px;background:#fff;padding:18px 20px;}
+.cost-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.cost-flip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.cost-before{font-size:.88rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1px;}
+.cost-after{font-family:'Instrument Serif',serif;font-size:1.15rem;}
+.cost-note{font-size:.8rem;color:var(--muted);margin-top:8px;line-height:1.5;}
+.inv-card{grid-column:1/-1;border:1px solid var(--border);border-radius:2px;background:var(--paper);padding:18px 20px;}
+.inv-card .cost-cat{color:var(--accent);}
+.inv-card p{font-size:.88rem;max-width:760px;}
+.calib{font-size:.78rem;color:var(--muted);margin-top:16px;border-top:1px solid var(--border);padding-top:12px;max-width:760px;}
+.restart-row{display:flex;gap:12px;margin-top:44px;flex-wrap:wrap;}
+.btn-main{background:var(--ink);color:var(--paper);border:none;padding:14px 28px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;cursor:pointer;border-radius:2px;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-main:hover{background:var(--accent);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);padding:14px 28px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.06em;cursor:pointer;border-radius:2px;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-ghost:hover{color:var(--ink);border-color:var(--ink);}
+.nav-row{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+
+.num-toggle{margin-top:14px;}
+.num-panel{display:none;border:1px solid var(--border);border-radius:2px;background:var(--paper);padding:20px;margin-top:14px;}
+.num-panel.open{display:block;}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.field label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;}
+.field input,.field textarea{width:100%;border:1px solid var(--border);border-radius:2px;background:#fff;padding:10px 12px;font-family:'Geist',sans-serif;font-weight:300;font-size:.9rem;color:var(--ink);}
+.field textarea{resize:vertical;min-height:64px;line-height:1.5;}
+.num-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.applied-flag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);display:none;align-items:center;gap:6px;margin-top:10px;}
+.applied-flag.on{display:flex;}
+
+.map-node{border:1px solid var(--border);border-radius:2px;background:#fff;padding:18px 20px;margin-bottom:14px;}
+.map-node-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;}
+.map-q{font-size:.94rem;line-height:1.5;max-width:560px;}
+.map-q strong{font-weight:500;}
+.band-pick{display:flex;gap:6px;flex-wrap:wrap;}
+.band-chip{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 9px;border-radius:2px;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:all .12s;}
+.band-chip.sel.b-fast{background:var(--green-bg);color:var(--green);border-color:var(--green);}
+.band-chip.sel.b-med{background:var(--blue-bg);color:var(--blue);border-color:var(--blue);}
+.band-chip.sel.b-slow{background:var(--orange-bg);color:var(--orange);border-color:var(--orange);}
+.band-chip.sel.b-struct{background:var(--red-bg);color:var(--red);border-color:var(--red);}
+.cur-new{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.route-inputs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;max-width:680px;margin-bottom:8px;}
+.route-arrow{font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--accent);}
+.share-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;align-items:center;}
+.copy-ok{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);display:none;}
+.copy-ok.on{display:inline;}
+.map-banner{border:1px solid var(--border);border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:2px;padding:12px 16px;font-size:.85rem;color:var(--accent-dark);margin-bottom:22px;max-width:720px;}
+
+.todo-group{margin-bottom:20px;}
+.todo-head{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding:3px 9px;display:inline-block;border-radius:2px;}
+.todo-item{font-size:.88rem;padding:12px 16px;border:1px solid var(--border);border-radius:2px;background:#fff;margin-bottom:8px;display:flex;gap:12px;align-items:baseline;}
+.todo-num{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--accent);min-width:22px;}
+.todo-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
+
+footer{border-top:1px solid var(--border);padding:34px 0 44px;}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.foot-inner p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em;}
+.foot-inner a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--muted);}
+.foot-inner a:hover{color:var(--ink);}
+
+@media(max-width:760px){
+  .wrap{padding:0 18px;}
+  .legend-grid{grid-template-columns:1fr 1fr;}
+  .cost-grid{grid-template-columns:1fr;}
+  .frame-head{padding:14px 16px;}
+  .screen{padding:28px 16px 36px;}
+  .route-inputs{grid-template-columns:1fr;}
+  .route-arrow{transform:rotate(90deg);width:fit-content;margin:0 auto;}
+  .cur-new{grid-template-columns:1fr;}
+  .hero{padding:52px 0 40px;}
+  .nodes{grid-template-columns:1fr;}
+  .num-grid{grid-template-columns:1fr 1fr;}
+  .map-node-head{flex-direction:column;}
+  .band-pick{width:100%;}
+}
+@media(max-width:480px){
+  .wrap{padding:0 14px;}
+  .nav{flex-wrap:wrap;gap:8px 14px;padding:14px 0;}
+  .nav-links{gap:12px;flex-wrap:wrap;}
+  .nav-links a{font-size:10px;}
+  .nav-brand{font-size:11px;}
+  .hero{padding:40px 0 32px;}
+  .hero-sub{font-size:0.95rem;}
+  .legend{padding:26px 0;}
+  .legend-grid{grid-template-columns:1fr;}
+  .mode-row{width:100%;}
+  .mode-btn{flex:1;padding:12px 10px;font-size:10px;text-align:center;}
+  .tool-section{padding:36px 0 56px;}
+  .screen{padding:24px 14px 32px;}
+  .frame-head{padding:12px 14px;}
+  .frame-step{font-size:9px;}
+  .t-sub{font-size:0.9rem;}
+  .chips{gap:6px;}
+  .chip{font-size:0.8rem;padding:8px 12px;}
+  .lever-big{font-size:12px;display:block;margin-bottom:6px;}
+  .ltab{padding:9px 13px;font-size:10px;}
+  .pcard{padding:16px;}
+  .pcard-route{font-size:1.1rem;}
+  .flagship{display:inline-block;margin-left:0;margin-top:8px;}
+  .cascade-head{flex-direction:column;}
+  .replay{width:100%;text-align:center;}
+  .nodes{gap:10px;}
+  .node{padding:13px 14px;}
+  .num-grid{grid-template-columns:1fr;}
+  .num-actions{flex-direction:column;}
+  .num-actions .btn-main,.num-actions .btn-ghost{width:100%;text-align:center;}
+  .btn-main,.btn-ghost{padding:13px 20px;font-size:11px;}
+  .restart-row .btn-main,.restart-row .btn-ghost,.restart-row a{width:100%;text-align:center;}
+  .share-row{flex-direction:column;align-items:stretch;}
+  .share-row .btn-main,.share-row .btn-ghost{width:100%;text-align:center;}
+  .tl-axis{grid-template-columns:96px repeat(6,1fr);}
+  .tl-row{grid-template-columns:96px repeat(6,1fr);}
+  .tl-inner{min-width:480px;}
+  .tl-label{font-size:0.72rem;padding:8px 8px;}
+  .tl-axis span{font-size:8px;padding:8px 4px;}
+  .out-title{font-size:1.3rem;}
+  .todo-item{padding:11px 13px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .wave,.node,.out-block,.founder-note{transition:none;}
+  html{scroll-behavior:auto;}
+}
+@media print{
+  header,footer,.hero,.legend,.mode-row,.mode-hint,.frame-head,.replay,.restart-row,.share-row,.nav-row,.num-panel,.num-toggle,.section-label{display:none !important;}
+  body{background:#fff;}
+  .tool-frame{border:none;}
+  .screen{display:none;padding:0;}
+  .screen.active{display:block;}
+  .wave,.node,.out-block,.founder-note{opacity:1 !important;transform:none !important;}
+  .tl{overflow:visible;}
+  .tool-section{padding:10px 0;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-brand" href="https://tanyapande05-jpg.github.io/GTM_Market_Signal_Interpreter/">GTM Signal Lab</a>
+    <div class="nav-links">
+      <a href="https://tanyapande05-jpg.github.io/GTM_Market_Signal_Interpreter/">← Tool 01: Signal Interpreter</a>
+      <a href="https://in.linkedin.com/in/tanya-pande" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="section-label">Tool 02 · GTM Pivot Cascade Map</div>
+    <h1>A pivot is <em>never one decision.</em></h1>
+    <p class="hero-sub">Make the hidden system behind a GTM pivot visible before you commit. Change your segment, and your channel, message, pricing psychology, sales cycle, CAC, working capital, hiring and fundraising story all move with it. One move, and the whole business moves. This tool does not predict your pivot. It lets you watch a real cascade unfold, then map your own.</p>
+    <div class="hero-tags">
+      <span class="tool-tag">Hardware</span>
+      <span class="tool-tag">Built from a real journey</span>
+      <span class="tool-tag">Map your own pivot</span>
+    </div>
+  </div>
+</section>
+
+<section class="legend">
+  <div class="wrap">
+    <div class="section-label">The System Layer: Delays</div>
+    <div class="legend-grid">
+      <div class="legend-card"><span class="legend-band b-fast">Fast · days–2 wks</span><p>Messaging, ad creative, pricing display, landing page copy. The visible part of a pivot.</p></div>
+      <div class="legend-card"><span class="legend-band b-med">Medium · 1–3 mo</span><p>Marketplace ranking, CAC stabilisation, A/B learning cycles. The part you wait through.</p></div>
+      <div class="legend-card"><span class="legend-band b-slow">Slow · 3–6 mo</span><p>MOQ and inventory reorder cycles, certifications, hiring plus ramping a new role.</p></div>
+      <div class="legend-card"><span class="legend-band b-struct">Structural · 6–18 mo</span><p>Brand trust in a new segment, review base, retail relationships, fundraising credibility.</p></div>
+    </div>
+    <p class="legend-note"><em>Why pivots feel disorienting:</em> the fast layer changes in a week, so the pivot <strong>looks</strong> done. The structural layer takes 6 to 18 months, so the pivot <strong>is not</strong> done. These are Donella Meadows' delays. Living inside that gap is what pivoting actually feels like.</p>
+  </div>
+</section>
+
+<section class="tool-section" id="tool">
+  <div class="wrap">
+    <div class="section-label">Run the simulation</div>
+    <h2 class="t-title" style="font-size:clamp(1.8rem,3.5vw,2.4rem);">Pull one lever. Watch everything else move.</h2>
+
+    <div class="mode-row" role="tablist">
+      <button class="mode-btn sel" id="modeLived" onclick="setMode('lived')">See a lived pivot</button>
+      <button class="mode-btn" id="modeMap" onclick="setMode('map')">Map your own pivot</button>
+    </div>
+    <p class="mode-hint" id="modeHint">Here is a worked example of a pivot from D2C to B2B2C for a drone edtech segment.</p>
+
+    <div class="tool-frame">
+      <div class="frame-head">
+        <span class="frame-step" id="stepLabel">Step 1 of 3: Your starting GTM state</span>
+        <div class="frame-dots" id="frameDots"></div>
+      </div>
+
+      <!-- ══════════ LIVED MODE ══════════ -->
+      <div class="screen active" data-mode="lived" id="s0">
+        <div class="t-title serif">Your starting GTM state</div>
+        <p class="t-sub">Five common GTM levers. This is the starting position of the lived journey below. On the next step you pull one lever and watch what it sets off.</p>
+        <div class="seed-note">Starting position: drone kits sold to makers via own website, mid-premium price, considered purchase. The highlighted chip on each lever is the lived path. The other options are illustrative, to show the range you could pick from.</div>
+
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">1 · Segment</span> who buys</div>
+          <div class="chips" data-lever="segment"></div></div>
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">2 · Channel</span> where they buy</div>
+          <div class="chips" data-lever="channel"></div></div>
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">3 · Message</span> why they buy</div>
+          <div class="chips" data-lever="message"></div></div>
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">4 · Price</span> tier and psychology</div>
+          <div class="chips" data-lever="price"></div></div>
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">5 · Motion</span> how the sale happens</div>
+          <div class="chips" data-lever="motion"></div></div>
+
+        <div class="nav-row"><button class="btn-main" onclick="go(1)">Choose a lever to pull →</button></div>
+      </div>
+
+      <div class="screen" data-mode="lived" id="s1">
+        <div class="t-title serif">Pull one lever</div>
+        <p class="t-sub">Pick the lever you are considering. Each scenario below is a <strong>lived pivot path</strong>, mapped from real consequences.</p>
+        <div class="lever-tabs" id="leverTabs"></div>
+        <div class="pivot-cards" id="pivotCards"></div>
+        <div class="nav-row"><button class="btn-ghost" onclick="go(0)">← Back</button></div>
+      </div>
+
+      <div class="screen" data-mode="lived" id="s2">
+        <div class="cascade-head">
+          <div>
+            <div class="lever-name" id="cascadeLever" style="margin-bottom:6px;"></div>
+            <div class="cascade-route" id="cascadeRoute"></div>
+          </div>
+          <button class="replay" onclick="playCascade(true)">↻ Replay cascade</button>
+        </div>
+        <div id="cascadeBody"></div>
+
+        <div class="out-block" id="tlBlock">
+          <div class="out-title serif">Pivot pain timeline</div>
+          <p class="out-sub">When each shockwave hits, and how long until it stabilises. The gap between the first row and the last is the disorientation zone.</p>
+          <div class="tl"><div class="tl-inner">
+            <div class="tl-axis"><span></span><span>Week 1</span><span>Month 1</span><span>Month 3</span><span>Month 6</span><span>Month 12</span><span>Month 18</span></div>
+            <div id="tlRows"></div>
+            <div class="tl-foot" id="tlFoot"></div>
+          </div></div>
+        </div>
+
+        <div class="out-block" id="costBlock">
+          <div class="out-title serif">Economic exposure</div>
+          <p class="out-sub">What this pivot puts at stake, in numbers. Figures from one real hardware journey, or switch in your own below. These are exposures, not predictions.</p>
+          <div class="cost-grid" id="costGrid"></div>
+          <p class="calib" id="calibNote"></p>
+
+          <div class="num-toggle">
+            <button class="btn-ghost" id="numToggleBtn" onclick="toggleNums()">Recalculate with my numbers ▾</button>
+            <div class="applied-flag" id="appliedFlag">● Showing your numbers</div>
+          </div>
+          <div class="num-panel" id="numPanel">
+            <div class="num-grid" id="numGrid"></div>
+            <div class="num-actions">
+              <button class="btn-main" onclick="applyNums()">Apply my numbers</button>
+              <button class="btn-ghost" onclick="resetNums()">Reset to lived numbers</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="restart-row">
+          <button class="btn-main" onclick="go(1)">Pull a different lever</button>
+          <button class="btn-ghost" onclick="setMode('map')">Now map your own pivot →</button>
+          <a class="btn-ghost" href="https://tanyapande05-jpg.github.io/GTM_Market_Signal_Interpreter/">Read your signals first → Tool 01</a>
+        </div>
+      </div>
+
+      <!-- ══════════ MAP MODE ══════════ -->
+      <div class="screen" data-mode="map" id="m0">
+        <div class="t-title serif">Name the pivot you are weighing</div>
+        <p class="t-sub">One lever at a time. That is the discipline. Which lever moves, from what, to what?</p>
+        <div class="map-banner">You will answer the same questions the lived cascade answered. Every consequence you write carries a delay band. That rule keeps this honest: <strong>the pivot is not done when the messaging changes. It is done when the structural layer settles.</strong></div>
+        <div class="lever-row"><div class="lever-name"><span class="lever-big">Which lever are you pulling?</span></div>
+          <div class="chips" id="mapLeverChips"></div></div>
+        <div class="lever-name" style="margin-top:20px;"><span class="lever-big">From → To</span></div>
+        <div class="route-inputs">
+          <div class="field"><label>Current state of this lever</label><input id="mapFrom" placeholder="e.g. D2C consumers via Instagram ads"></div>
+          <div class="route-arrow">→</div>
+          <div class="field"><label>Where you are pivoting it</label><input id="mapTo" placeholder="e.g. B2B2C via school partnerships"></div>
+        </div>
+        <div class="nav-row"><button class="btn-main" onclick="goMap(1)">Map wave 1: the fast layer →</button></div>
+      </div>
+
+      <div class="screen" data-mode="map" id="m1">
+        <div class="t-title serif">Wave 01: What changes immediately?</div>
+        <p class="t-sub">The fast layer: what flips within days or weeks of pulling this lever. Answer what applies, skip what does not.</p>
+        <div id="mapWave1"></div>
+        <div class="nav-row"><button class="btn-ghost" onclick="goMap(0)">← Back</button><button class="btn-main" onclick="goMap(2)">Map wave 2: second order →</button></div>
+      </div>
+
+      <div class="screen" data-mode="map" id="m2">
+        <div class="t-title serif">Wave 02: What changes over weeks and months?</div>
+        <p class="t-sub">Consequences of the consequences. This is where most pivots surprise their founders.</p>
+        <div id="mapWave2"></div>
+        <div class="nav-row"><button class="btn-ghost" onclick="goMap(1)">← Back</button><button class="btn-main" onclick="goMap(3)">Map wave 3: the slow layer →</button></div>
+      </div>
+
+      <div class="screen" data-mode="map" id="m3">
+        <div class="t-title serif">Wave 03: What takes months to a year plus?</div>
+        <p class="t-sub">The structural layer, the part that makes pivots painful. Be honest about the delays here. This wave is the whole point.</p>
+        <div id="mapWave3"></div>
+        <div class="nav-row"><button class="btn-ghost" onclick="goMap(2)">← Back</button><button class="btn-main" onclick="goMap(4)">Add your numbers →</button></div>
+      </div>
+
+      <div class="screen" data-mode="map" id="m4">
+        <div class="t-title serif">Your baseline numbers <span style="color:var(--muted);font-size:1rem;">(optional)</span></div>
+        <p class="t-sub">Rough ranges are fine. These become your exposure sheet. Leave blank anything you do not know.</p>
+        <div class="num-grid" id="mapNumGrid"></div>
+        <div class="nav-row"><button class="btn-ghost" onclick="goMap(3)">← Back</button><button class="btn-main" onclick="goMap(5)">See my pivot map →</button></div>
+      </div>
+
+      <div class="screen" data-mode="map" id="m5">
+        <div class="cascade-head">
+          <div>
+            <div class="lever-name" id="mapOutLever" style="margin-bottom:6px;"></div>
+            <div class="cascade-route" id="mapOutRoute"></div>
+          </div>
+          <button class="replay" onclick="playMapCascade(true)">↻ Replay</button>
+        </div>
+        <div id="mapOutBody"></div>
+
+        <div class="out-block" id="mapTlBlock">
+          <div class="out-title serif">Your pivot pain timeline</div>
+          <p class="out-sub">Built from the delay bands you assigned. The distance between your first row and your last is your disorientation zone. Plan for all of it, not just week one.</p>
+          <div class="tl"><div class="tl-inner">
+            <div class="tl-axis"><span></span><span>Week 1</span><span>Month 1</span><span>Month 3</span><span>Month 6</span><span>Month 12</span><span>Month 18</span></div>
+            <div id="mapTlRows"></div>
+            <div class="tl-foot" id="mapTlFoot"></div>
+          </div></div>
+        </div>
+
+        <div class="out-block" id="mapCostBlock">
+          <div class="out-title serif">Your exposure sheet</div>
+          <p class="out-sub">What this pivot puts on the table, from the numbers you entered.</p>
+          <div class="cost-grid" id="mapCostGrid"></div>
+        </div>
+
+        <div class="out-block" id="mapTodoBlock">
+          <div class="out-title serif">Where to start</div>
+          <p class="out-sub">Counterintuitive but correct: start the slowest clocks first. The fast layer can wait. It always can.</p>
+          <div id="mapTodoList"></div>
+        </div>
+
+        <div class="share-row">
+          <button class="btn-main" onclick="copyShareLink()">Copy shareable link</button>
+          <button class="btn-ghost" onclick="window.print()">Print / save as PDF</button>
+          <button class="btn-ghost" onclick="goMap(0)">Map another pivot</button>
+          <span class="copy-ok" id="copyOk">✓ Link copied. The map lives inside the URL</span>
+        </div>
+        <p class="calib" style="margin-top:18px;">Share note: your map is encoded inside the link itself, not stored on any server. Anyone with the link can read it, so do not put anything confidential in your map.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>GTM Signal Lab · Tool 02 · Built by Tanya Pande</p>
+    <div style="display:flex;gap:18px;">
+      <a href="https://tanyapande05-jpg.github.io/GTM_Market_Signal_Interpreter/">Tool 01: Signal Interpreter</a>
+      <a href="https://in.linkedin.com/in/tanya-pande" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════ DATA ═══════════ */
+const LEVERS = {
+  segment:{label:"Segment",opts:["Makers","Tech enthusiasts","Mass consumer","Premium lifestyle buyer","STEM educators","STEM manufacturers","Institutions"],def:0},
+  channel:{label:"Channel",opts:["Own website","Marketplaces","Quick commerce","General trade","GeM portal","IndiaMART"],def:0},
+  message:{label:"Message",opts:["Spec-led","Problem-led","Identity-led","Price-led","Trust-led","Outcome-led","Revenue-led"],def:5},
+  price:{label:"Price",opts:["Budget","Mid-premium","Premium","Bundle","Subscription","B2B contract pricing"],def:1},
+  motion:{label:"Motion",opts:["Impulse","Considered purchase","Community-led","Assisted sales","Tender"],def:1}
+};
+
+const BANDS = {
+  fast:{cls:"b-fast",label:"Fast",bar:"var(--green)",span:[1,1]},
+  med:{cls:"b-med",label:"Med",bar:"var(--blue)",span:[2,3]},
+  slow:{cls:"b-slow",label:"Slow",bar:"var(--orange)",span:[3,4]},
+  struct:{cls:"b-struct",label:"Structural",bar:"var(--red)",span:[4,6]}
+};
+
+const LIVED_NUMS = {aov:5500, margin:45, mkAllIn:27, cac:500, sales:20000, moqUnits:100, moqCash:270000, advancePct:50, leadDays:14};
+let NUMS = {...LIVED_NUMS};
+let numsAreCustom = false;
+
+const NUM_FIELDS = [
+  {k:"aov",label:"Average order value (₹)",ph:"5500"},
+  {k:"margin",label:"Own-channel gross margin (%)",ph:"45"},
+  {k:"mkAllIn",label:"Marketplace all-in cost (% of MRP)",ph:"27"},
+  {k:"cac",label:"CAC via ads (₹ / customer)",ph:"500"},
+  {k:"sales",label:"Salesperson cost (₹ / month)",ph:"20000"},
+  {k:"moqUnits",label:"MOQ per reorder (units)",ph:"100"},
+  {k:"moqCash",label:"Cash locked per MOQ cycle (₹)",ph:"270000"},
+  {k:"advancePct",label:"B2B advance payment (%)",ph:"50"}
+];
+
+const inr = v => "₹" + Math.round(v).toLocaleString("en-IN");
+const CS = "<strong>Current state:</strong> ";
+const NS = "<strong>New state:</strong> ";
+
+/* ═══════════ LIVED PIVOTS ═══════════ */
+const PIVOTS = [
+{
+  id:"p1", lever:"segment", flagship:true,
+  from:"D2C makers", to:"B2B2C (STEM educators)",
+  meta:["Segment pivot","Touches every part of the business","The lived flagship"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer (days to 2 weeks)",nodes:[
+     {cat:"ICP",band:"fast",text:CS+"makers of any age drawn to building drones. Parents buying for a child who wants to learn by doing, and adult tinkerers entering the world of drones. Not a toy buyer.<br>"+NS+"STEM educators buying a revenue stream. New person, new pain, new vocabulary."},
+     {cat:"Message",band:"fast",text:CS+"“Learn, build, fly a drone.” The pull of learning by doing.<br>"+NS+"“Run a drone workshop at your centre without the sourcing headache.” Components, curriculum and process arrive ready to deploy, and it gives the centre a fresh answer to the question parents keep asking: what is new here?"},
+     {cat:"Competitor set",band:"fast",text:CS+"compared to toys and edtech apps, judged on price and engagement.<br>"+NS+"compared to other franchiseable STEM programs, judged on revenue potential and ease of running."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Sales cycle",band:"med",text:CS+"2–5 days.<br>"+NS+"1–4 weeks of research, comparison and internal discussion at the centre."},
+     {cat:"CAC composition",band:"med",text:CS+"ad spend.<br>"+NS+"salesperson salary plus travel. A different cost shape that takes 2–3 months to stabilise."},
+     {cat:"Pricing",band:"fast",text:CS+"mid-premium single unit.<br>"+NS+"bundle and program pricing. The deal is kits plus curriculum, not a product."},
+     {cat:"Website & placement",band:"fast",text:CS+"a store.<br>"+NS+"a partner pitch. Layout, messaging and CTAs rebuilt."},
+     {cat:"Funnel leak points",band:"med",text:CS+"conversion rate and time on site.<br>"+NS+"intro call to demo call to close. The places where deals die move completely."},
+     {cat:"Objection handling",band:"med",text:"Every objection is new. Price objections become <strong>ROI objections</strong>."},
+     {cat:"Retargeting",band:"med",text:CS+"new creatives and LP variants.<br>"+NS+"adding the educator's needs into the bundle. Retargeting becomes deal shaping."},
+     {cat:"A/B learning",band:"med",text:"Testing restarts from zero. Old winning creatives teach you <strong>nothing</strong> about educators. 2–3 months to find the converting frame."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Working capital",band:"slow",text:CS+"full payment upfront.<br>"+NS+"50% advance, balance 10–15 days after delivery. You ship before full payment. Cash arrives in chunks tied to partner milestones."},
+     {cat:"Hiring",band:"slow",text:CS+"performance marketer.<br>"+NS+"BD person. Hiring plus ramping: 3–6 months."},
+     {cat:"Post-sale",band:"slow",text:CS+"sold, then the relationship runs on new launches, special offers and newsletters.<br>"+NS+"train the trainer. Help them run their workshop well and build confidence in drone assembly, flight and troubleshooting."},
+     {cat:"Ops focus",band:"med",text:CS+"managing platform listings.<br>"+NS+"nurturing partnerships."},
+     {cat:"Fundraising narrative",band:"struct",text:CS+"D2C high growth story.<br>"+NS+"B2B2C deals and success stories. Different metrics, different investor conversation. 6–12 months to be credible."},
+     {cat:"Market math",band:"struct",text:"TAM, SAM and SOM recalculated. Scalability, repeatability and penetration logic all change. The complete customer journey and buyer behaviour change."},
+     {cat:"Brand trust",band:"struct",text:"Educators decide on <strong>peer references</strong>, not ads. You enter their network with zero. Trust builds only through delivered workshops: 6–18 months."}
+   ]}
+  ],
+  note:{label:"From the founder",text:"<em>“We had success stories, but for a different audience. In this segment we had to create the first one before anyone would listen.”</em> The reference loop is circular: you need trust to win partners and partners to build trust. That circularity is the structural delay."},
+  timeline:[
+    {label:"Message, site, pricing frame",band:"fast",span:[1,1]},
+    {label:"Sales cycle & funnel rebuild",band:"med",span:[2,3]},
+    {label:"CAC stabilisation (new motion)",band:"med",span:[2,3]},
+    {label:"BD hire + ramp",band:"slow",span:[3,4]},
+    {label:"Working capital rhythm settles",band:"slow",span:[3,4]},
+    {label:"Fundraising story credible",band:"struct",span:[4,5]},
+    {label:"Brand trust among educators",band:"struct",span:[4,6]}
+  ],
+  tlFoot:"The fast layer finishes in week 1. The trust layer finishes up to 18 months later. Everything between is the disorientation zone.",
+  cost:n=>[
+    {cat:"Deal size",before:inr(n.aov)+" single kit",after:inr(n.aov*3)+" bundle",note:"3–5 kits plus program curriculum per partner deal. Around 3x the deal, and a completely different sale."},
+    {cat:"CAC shape",before:inr(n.cac)+" / customer (ads)",after:inr(n.sales)+" / month (salesperson + travel)",note:"From variable and elastic to fixed and salary shaped. Burn rises before revenue does."},
+    {cat:"Payment terms",before:"100% upfront (D2C)",after:n.advancePct+"% advance · "+(100-n.advancePct)+"% after delivery",note:"Balance arrives 10–15 days after shipping. You finance the gap."},
+    {cat:"Payback",before:"Same day",after:"Weeks, per milestone",note:"Cash returns in chunks tied to partner milestones, not daily drips."}
+  ],
+  inv:"<strong>How the inventory loop bends:</strong> steady daily drips become lumpy bundle orders. Kits are assembled per program and shipped before full payment. Forecasting shifts from ad-spend patterns to a pipeline of signed partners."
+},
+{
+  id:"p2", lever:"segment",
+  from:"Consumer", to:"Institutions / Government",
+  meta:["Segment pivot","Longest cycle in the tool","Evaluated, then declined. Read why"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"ICP",band:"fast",text:CS+"individual buyer.<br>"+NS+"procurement officer, principal or department head. Decision by committee, not by a person."},
+     {cat:"Message",band:"fast",text:CS+"outcome for the child.<br>"+NS+"compliance, safety, curriculum alignment, NEP aligned, tender-spec language. Plus the school's own upside: showcasing hands-on STEM builds credibility, ranking and admission enquiries."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Motion",band:"slow",text:CS+"direct deals in weeks.<br>"+NS+"tender via GeM portal, or through the procurement officer for orders under about ₹10 lakh. Sales cycle: 3–9 months."},
+     {cat:"Budget timing",band:"slow",text:"You sell on their calendar. The management committee allocates budget in the annual meeting for the new admission year. Miss the window, wait a year."},
+     {cat:"Channel",band:"med",text:CS+"marketplace and website.<br>"+NS+"GeM or direct. Some deals run through an internal facilitator who takes a commission."},
+     {cat:"Pricing",band:"med",text:"GeM route: L1, lowest bid wins. Facilitator route: bundle approach, basic program plus advanced."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Working capital",band:"struct",text:"GeM: full delivery, then wait the government cycle. Internal route: partial advance, balance after program delivery. Either way you finance their timeline."},
+     {cat:"Certifications",band:"slow",text:"Gatekeepers, not nice-to-haves. You cannot bid without them. Lived workaround: source components from vendors who already hold the certificates. Sub-249g nano drones needed no UIN or DGCA type certification."},
+     {cat:"Hiring",band:"slow",text:CS+"marketing roles.<br>"+NS+"tender and bid specialist for GeM, BD for the internal route."},
+     {cat:"Fundraising narrative",band:"struct",text:NS+"a government contracts pipeline. Investors discount it for payment risk and lumpiness."}
+   ]}
+  ],
+  note:{label:"A systems decision, from the founder",text:"<em>“We understood our inventory would get locked and we would not have money for more work, so we did not move ahead in this direction.”</em> Sometimes the best output of a simulation is the pivot you do not make. Seeing the delay before paying for it is systems thinking working."},
+  timeline:[
+    {label:"Message & spec-language rewrite",band:"fast",span:[1,1]},
+    {label:"GeM registration & bid machinery",band:"med",span:[2,3]},
+    {label:"First tender cycle completes",band:"slow",span:[3,4]},
+    {label:"Certification chain in place",band:"slow",span:[3,4]},
+    {label:"First payment fully received",band:"struct",span:[4,5]},
+    {label:"Pipeline credible to investors",band:"struct",span:[4,6]}
+  ],
+  tlFoot:"The government's calendar becomes your calendar. Budget windows are annual. Miss one, wait for the next.",
+  cost:n=>[
+    {cat:"Sales cycle",before:"1–4 weeks",after:"3–9 months",note:"Committee decisions, budget meetings, tender timelines."},
+    {cat:"Payment",before:"Advance / 50-50",after:"Delivery first, payment later",note:"Cash locked in delivered but unpaid stock across the govt cycle."},
+    {cat:"Pricing power",before:"You set the bundle",after:"L1: lowest bid wins (GeM)",note:"Or a facilitator-shaped bundle with a commission inside it."},
+    {cat:"Gatekeepers",before:"Optional credibility",after:"Certifications required to bid",note:"Lived workaround: buy components only from vendors who hold BIS or EMC certificates."}
+  ],
+  inv:"<strong>How the inventory loop bends:</strong> you hold or deliver stock against a tender or PO timeline you do not control. This is the loop the founder examined, and declined. The simulation you run before pivoting is cheaper than the one you run after."
+},
+{
+  id:"p3", lever:"channel",
+  from:"Own website", to:"Marketplace (Amazon / Flipkart)",
+  meta:["Channel pivot","Margin structure rebuilt","Real numbers inside"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"Message",band:"fast",text:CS+"brand story on your own site.<br>"+NS+"bullet points, images and price visible in 3 seconds next to 40 rivals. The value proposition must be razor clear."},
+     {cat:"Pricing psychology",band:"fast",text:CS+"storytelling and feature-by-feature persuasion.<br>"+NS+"direct price anchoring against every competitor, and comparison by star rating before anyone reads a word."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Channel economics",band:"med",text:"Take rate plus fulfilment plus ads eat <strong>27–30% of MRP</strong>. Against a 45% own-site gross margin, the margin structure is rebuilt."},
+     {cat:"CAC",band:"med",text:CS+"Meta ads.<br>"+NS+"marketplace ads. Different auction, different skill, different learning curve."},
+     {cat:"Ranking",band:"med",text:"Listing rank is earned slowly: reviews plus sales velocity, 1–3 months minimum."},
+     {cat:"Compliance risk",band:"slow",text:"Certification checks can halt a listing mid-sales while paperwork is in process. A channel can go dark for months through no fault of demand."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Customer relationship",band:"struct",text:"You lose it. No emails, no retargeting pool, no repeat purchase flywheel. <strong>The platform owns your customer.</strong>"},
+     {cat:"Inventory & cash",band:"slow",text:"Stock moves to fulfilment centres in advance of any sale. Cash locked in warehouses before a single order exists."},
+     {cat:"Returns / RTO",band:"med",text:"RTO scales up sharply, roughly <strong>5x the own-site rate</strong> in the lived data. Return policy is set by the platform, not you."},
+     {cat:"Review base",band:"struct",text:"Builds over 6–12 months and becomes your moat or your ceiling. The trap: reviews that arrive too fast get flagged as suspicious. You cannot rush this layer even if you try."}
+   ]}
+  ],
+  note:{label:"The systems insight",text:"Marketplace listings put a compliance dependency in series with your revenue. One flag on certification paperwork and the channel goes dark for months, regardless of demand. Fast revenue, fragile foundation."},
+  timeline:[
+    {label:"Listing copy & creative compression",band:"fast",span:[1,1]},
+    {label:"Marketplace CAC stabilises",band:"med",span:[2,3]},
+    {label:"Ranking & velocity established",band:"med",span:[2,3]},
+    {label:"Fulfilment stock rhythm settles",band:"slow",span:[3,4]},
+    {label:"Review base becomes a moat",band:"struct",span:[4,5]},
+    {label:"Compliance risk window",band:"slow",span:[2,4]}
+  ],
+  tlFoot:"Revenue can start in month 1 while the foundations underneath it take a year.",
+  cost:n=>{
+    const unitCost = n.moqCash/n.moqUnits;
+    return [
+    {cat:"Gross margin",before:"~"+n.margin+"% (own site)",after:"~"+Math.max(0,n.margin-n.mkAllIn)+"% after platform costs",note:n.mkAllIn+"% of MRP goes to take rate plus fulfilment plus ads. The margin structure is rebuilt."},
+    {cat:"Cash locked pre-sale",before:"₹0 (ship on order)",after:"~15 units ≈ "+inr(unitCost*15)+" parked at fulfilment centre",note:"Stock sits in the platform's warehouse before any order exists."},
+    {cat:"RTO rate",before:"Baseline (own site)",after:"~5x baseline",note:"Marketplace-native buyers return more, and the policy is not yours."},
+    {cat:"Customer data",before:"Emails, retargeting, repeat flywheel",after:"None. Platform owned",note:"The long-term cost nobody prices in month 1."}
+  ];},
+  inv:"<strong>How the inventory loop bends:</strong> the loop front-loads. Stock-in requirements follow the platform's demand forecast, not yours, and RTO adds a reverse flow of returned units re-entering inventory."
+},
+{
+  id:"p5", lever:"price",
+  from:"Mid-premium", to:"Budget",
+  meta:["Price pivot","One-way door","Volume economics"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"Message",band:"fast",text:"The message is forced toward price led. <strong>Premium cues in creative and packaging now work against you.</strong>"},
+     {cat:"Price testing",band:"fast",text:"The lived approach: enter low as a market test, then re-anchor against competitor pricing once real demand data exists."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"CAC math",band:"med",text:"Thinner contribution per unit. The ad-led CAC that worked at mid-premium is now <strong>unprofitable</strong>. Volume must compensate, which demands wider distribution."},
+     {cat:"Segment drift",band:"med",text:CS+"considered buyers.<br>"+NS+"price sensitive, marketplace-native buyers. Higher RTO, harsher reviews, lower loyalty, less stickiness to the brand."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"MOQ pressure",band:"slow",text:"Budget economics only work at volume. MOQ per cycle roughly <strong>doubles</strong>. More cash in stock, and a forecasting miss hurts more."},
+     {cat:"Brand position",band:"struct",text:"<strong>A one-way door.</strong> Dropping price takes a day. Climbing back to premium takes years."},
+     {cat:"Fundraising narrative",band:"struct",text:CS+"premium brand with margin.<br>"+NS+"volume play. A different investor archetype entirely."}
+   ]}
+  ],
+  note:{label:"The systems insight",text:"Price is the fastest lever to move and the slowest to move back. The decision is instant. The consequences are structural."},
+  timeline:[
+    {label:"Price drop live",band:"fast",span:[1,1]},
+    {label:"CAC math re-learned",band:"med",span:[2,3]},
+    {label:"Volume MOQ cycle in place",band:"slow",span:[3,4]},
+    {label:"New segment behaviour visible",band:"med",span:[2,3]},
+    {label:"Brand repositioning locked in",band:"struct",span:[4,6]}
+  ],
+  tlFoot:"The price changes in a day. The brand position it creates takes years to reverse.",
+  cost:n=>[
+    {cat:"Margin per unit",before:"~"+n.margin+"%",after:"~"+Math.max(5,n.margin-15)+"%",note:"Every unit works harder for less. Volume is now mandatory. (Lived: 45% to 30%.)"},
+    {cat:"MOQ per cycle",before:n.moqUnits+" units · "+inr(n.moqCash)+" locked",after:(n.moqUnits*2)+" units · ~"+inr(n.moqCash*2)+" locked",note:"Double the cash sitting in stock, double the forecasting risk."},
+    {cat:"Buyer behaviour",before:"Considered, loyal-ish",after:"Price led, high RTO, low loyalty",note:"The segment silently swaps under the same product."},
+    {cat:"Reversibility",before:"·",after:"One-way door",note:"Premium repositioning after a budget era takes years."}
+  ],
+  inv:"<strong>How the inventory loop bends:</strong> same loop as D2C but fatter. Thin margin per unit means the MOQ must grow for the same profit, so more cash sits in stock and every forecasting miss is amplified."
+},
+{
+  id:"p6", lever:"price",
+  from:"One-time purchase", to:"Bundle / Subscription",
+  meta:["Price pivot","Recurring revenue","New ops muscle"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"Pricing structure",band:"fast",text:CS+"single unit.<br>"+NS+"bundle and program selling. The unit of sale becomes a relationship."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Message",band:"fast",text:CS+"one-shot ownership.<br>"+NS+"ongoing value. Program, curriculum, refills, updates. Answer the question: after one workshop, what next? Never leave them hanging."},
+     {cat:"Payback logic",band:"med",text:"Revenue arrives over time. Short-term cash dips even as LTV rises. The J-curve nobody warns you about."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Ops muscle",band:"slow",text:"Renewals, churn tracking, recurring delivery. A retention function where none existed."},
+     {cat:"Fundraising narrative",band:"struct",text:"Recurring revenue improves the story, but only after 2–3 renewal cycles prove retention. 6–12 months before it is credible."}
+   ]}
+  ],
+  note:{label:"The systems insight",text:"Subscription converts one big feedback loop into many small ones. Cash out smooths but never stops, and the fundraising upside is gated behind renewal proof. That delay cannot be shortcut."},
+  timeline:[
+    {label:"Bundle pricing live",band:"fast",span:[1,1]},
+    {label:"First quarterly cycle delivered",band:"med",span:[2,3]},
+    {label:"Retention ops built",band:"slow",span:[3,4]},
+    {label:"2–3 renewals prove the model",band:"struct",span:[4,5]}
+  ],
+  tlFoot:"The recurring revenue story is real, but only the calendar can prove it. Renewal cycles cannot be compressed.",
+  cost:n=>[
+    {cat:"Revenue shape",before:inr(n.aov*3)+" once",after:inr(n.aov)+"–"+inr(n.aov*1.5)+" / partner / quarter",note:"Smaller chunks, forever, if retention holds."},
+    {cat:"Forecasting basis",before:"Ad spend & seasonality",after:"Renewal & churn per cohort",note:"A new discipline: cohort math replaces campaign math."},
+    {cat:"Cash curve",before:"Spike per sale",after:"J-curve",note:"Dips first, compounds later. Budget for the dip."},
+    {cat:"Proof timeline",before:"Immediate (a sale is a sale)",after:"2–3 renewal cycles",note:"6–12 months before the recurring story is investor credible."}
+  ],
+  inv:"<strong>How the inventory loop bends:</strong> one big reorder becomes several smaller recurring ones. Refill kits, materials, curriculum components per partner per quarter. Smoother cash out, but it never stops. Forecasting shifts to renewal rates per partner cohort."
+},
+{
+  id:"p7", lever:"message",
+  from:"Experience-led", to:"Revenue-led",
+  meta:["Message pivot","Fastest lever","Hidden circular delay"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"The frame",band:"fast",text:CS+"experience led.<br>"+NS+"revenue led. Copy, landing page and creatives rewritten in 1–2 weeks."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Content engine",band:"med",text:CS+"demo videos and parent testimonials.<br>"+NS+"ROI calculators, partner success stories, workshop economics, case studies. A different factory, not a different coat of paint."},
+     {cat:"A/B learning",band:"med",text:"Testing restarts. 2–3 months to find which message and landing page combination converts the new audience."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Proof inventory",band:"struct",text:"Revenue claims demand case studies with numbers, which require successful partners, which require time. A circular dependency is a structural delay in disguise."}
+   ]}
+  ],
+  note:{label:"The systems insight",text:"Messaging is the fastest lever on the board, which is exactly why founders over-trust it. The words change in a week. The proof behind the words takes a year to exist."},
+  timeline:[
+    {label:"Copy & creative rewrite",band:"fast",span:[1,1]},
+    {label:"Content engine retooled",band:"med",span:[2,3]},
+    {label:"Converting frame found (A/B)",band:"med",span:[2,3]},
+    {label:"Case study proof exists",band:"struct",span:[4,5]}
+  ],
+  tlFoot:"The fastest pivot on paper, and the one whose credibility takes longest to earn.",
+  cost:n=>[
+    {cat:"Rewrite cost",before:"·",after:"1–2 weeks of focused work",note:"The cheap part. Everyone budgets for this part only."},
+    {cat:"Re-learning cost",before:"Known winning creatives",after:"2–3 months of A/B from zero",note:"Old winners teach you nothing about the new frame."},
+    {cat:"Proof cost",before:"Testimonials on hand",after:"Case studies you do not have yet",note:"Built only through real partner success. No shortcut."},
+    {cat:"Inventory impact",before:"·",after:"None",note:"The only pivot in this tool that leaves the inventory loop untouched."}
+  ],
+  inv:"<strong>How the inventory loop bends:</strong> it does not. Message is the one lever that leaves stock alone. Everything else it touches is time, spend and proof."
+},
+{
+  id:"p8", lever:"motion",
+  from:"Impulse", to:"Considered / Assisted",
+  meta:["Motion pivot","Founder time sink","New measurement system"],
+  waves:[
+   {num:"01",title:"Immediate: the fast layer",nodes:[
+     {cat:"Measurement",band:"fast",text:CS+"website and marketplace analytics.<br>"+NS+"call outcomes, demo bookings, pipeline stages. You are flying new instruments."}
+   ]},
+   {num:"02",title:"Second order: weeks to months",nodes:[
+     {cat:"Funnel tooling",band:"med",text:CS+"Meta pixel plus analytics.<br>"+NS+"CRM, call scripts, follow-up cadences. The stack is rebuilt around conversations."},
+     {cat:"CAC shape",band:"med",text:"CAC becomes salary shaped: a fixed monthly cost regardless of conversions. Burn rises before revenue does."}
+   ]},
+   {num:"03",title:"Third order: months to a year plus",nodes:[
+     {cat:"Forecasting",band:"slow",text:CS+"ad-spend elastic. Spend more, sell more this week.<br>"+NS+"pipeline elastic. Hire, ramp, wait a quarter. The throttle moves from budget to people."},
+     {cat:"Founder time",band:"slow",text:"The hidden cost nobody budgets: in the beginning, every call conversion and deal close is <strong>founder led</strong>. The founder becomes the sales team, and everything else slows down."}
+   ]}
+  ],
+  note:{label:"From the founder",text:"<em>“So true. In the starting, all the call conversions and deal closing is founder led.”</em> Assisted motion does not just cost a salary. It costs the founder's calendar, the scarcest stock in the whole system."},
+  timeline:[
+    {label:"New tracking live",band:"fast",span:[1,1]},
+    {label:"CRM + cadence stack built",band:"med",span:[2,3]},
+    {label:"Salary-shaped CAC absorbed",band:"med",span:[2,3]},
+    {label:"Pipeline forecasting reliable",band:"slow",span:[3,4]},
+    {label:"Sales de-founderised",band:"struct",span:[4,5]}
+  ],
+  tlFoot:"The dashboards change in a week. Getting the founder out of every deal takes a year.",
+  cost:n=>{
+    const unitCost = n.moqCash/n.moqUnits;
+    return [
+    {cat:"CAC shape",before:inr(n.cac)+" / customer, elastic",after:inr(n.sales)+" / month, fixed",note:"Paid whether or not deals close. Burn leads revenue."},
+    {cat:"Demo units",before:"All stock sellable",after:"~5 units ≈ "+inr(unitCost*5)+" permanently in the field",note:"A quiet, permanent cash sink. Samples are inventory that never converts."},
+    {cat:"Revenue throttle",before:"Ad budget (adjust today)",after:"Hiring + ramp (adjust in quarters)",note:"The system's response time slows by an order of magnitude."},
+    {cat:"Founder hours",before:"Building & marketing",after:"Calls, demos, closing",note:"The unbudgeted cost, and the first bottleneck to break."}
+  ];},
+  inv:"<strong>How the inventory loop bends:</strong> the sellable loop barely changes, but demo units become a permanent side pool of stock in the field. Reorder decisions key off pipeline stages instead of last week's sales."
+}
+];
+
+/* ═══════════ MAP-YOUR-OWN NODES ═══════════ */
+const MAP_NODES = [
+ {id:"icp",wave:1,cat:"ICP",q:"<strong>Who buys today, and who decides after the pivot?</strong> Name the actual person.",phCur:"Makers buying to learn by doing, not a toy",phNew:"Centre owners buying a revenue stream",band:"fast"},
+ {id:"message",wave:1,cat:"Message",q:"<strong>Why do they buy today, and what becomes the reason after?</strong> The pain point usually changes, not just the words.",phCur:"Learn, build, fly a drone",phNew:"Run a workshop without the sourcing headache",band:"fast"},
+ {id:"competitors",wave:1,cat:"Competitor set",q:"<strong>Who are you compared against, before and after?</strong>",phCur:"Toys and edtech apps, judged on price",phNew:"STEM programs, judged on revenue potential",band:"fast"},
+ {id:"cycle",wave:2,cat:"Sales cycle",q:"<strong>How long does a sale take, before and after?</strong> Use the slowest realistic case.",phCur:"2 to 5 days",phNew:"1 to 4 weeks with demos and internal discussion",band:"med"},
+ {id:"cac",wave:2,cat:"CAC shape",q:"<strong>What does acquiring a customer cost, and what shape does that cost take after?</strong> Ads are elastic. Salaries are fixed.",phCur:"₹500 per customer in ads",phNew:"₹20,000 per month salesperson plus travel",band:"med"},
+ {id:"funnel",wave:2,cat:"Funnel leak points",q:"<strong>Where do deals die today, and where will they die after?</strong>",phCur:"Cart abandonment at checkout",phNew:"Champion cannot sell it upward internally",band:"med"},
+ {id:"pricing",wave:2,cat:"Pricing structure",q:"<strong>How is the price structured, before and after?</strong> Single unit, bundle, contract, subscription.",phCur:"₹5,500 single kit",phNew:"₹16,500 bundle: kits plus curriculum",band:"fast"},
+ {id:"wc",wave:3,cat:"Working capital",q:"<strong>When does cash arrive relative to shipping, before and after?</strong> This is where hardware pivots quietly break.",phCur:"100% upfront at checkout",phNew:"50% advance, balance 2 weeks after delivery",band:"slow"},
+ {id:"hiring",wave:3,cat:"Hiring priority",q:"<strong>Which role becomes your priority hire, and how long to hire and ramp?</strong>",phCur:"Performance marketer",phNew:"BD person, 3 to 6 months to productive",band:"slow"},
+ {id:"postsale",wave:3,cat:"Post-sale",q:"<strong>What happens after the sale, before and after?</strong> Support load is a cost most pivots forget.",phCur:"Sold, then newsletters and offers",phNew:"Train the trainer: assembly, flight, troubleshooting",band:"slow"},
+ {id:"trust",wave:3,cat:"Brand trust",q:"<strong>Who vouches for you in the new segment, and do you know them yet?</strong> If references decide, count the months to earn your first one.",phCur:"Reviews and success stories with the current audience",phNew:"Nobody yet. Need 2 to 3 successful partners first",band:"struct"},
+ {id:"fundraise",wave:3,cat:"Fundraising narrative",q:"<strong>What story will you tell investors after, and what proof does it need?</strong>",phCur:"D2C growth story",phNew:"B2B2C deals. Needs 3 signed partners plus retention proof",band:"struct"}
+];
+const WAVE_TITLES = {1:"Immediate: the fast layer",2:"Second order: weeks to months",3:"Third order: months to a year plus"};
+
+/* priority actions per node, used for the to-do list */
+const ACTIONS = {
+ trust:"Start reference building now. Identify the 2 or 3 people whose word carries weight in the new segment and open those conversations this week.",
+ fundraise:"Start logging the metrics your new narrative needs. The proof takes a year. The logging takes a day.",
+ wc:"Model the cash gap per deal and arrange the buffer before the first order, not after.",
+ hiring:"Open the pipeline for the new priority role. Hiring plus ramp is months. The clock starts when you post the role.",
+ postsale:"Design the post-sale playbook before the first sale needs it.",
+ cycle:"Rebuild your pipeline stages and reset expectations for the longer cycle.",
+ cac:"Set a monthly budget for the new CAC shape and a review date to check it against reality.",
+ funnel:"Move your tracking to the new leak points. The old dashboards will lie to you.",
+ pricing:"Draft the new price structure and test it in your next 5 real conversations.",
+ icp:"Write the new ICP one-pager and share it with everyone who talks to customers.",
+ message:"Rewrite the copy last. It is the fastest part. Do not let it feel like progress.",
+ competitors:"List the new competitor set and learn what their buyers already understand."
+};
+const TODO_GROUPS = [
+ {band:"struct",head:"Start this week · structural, 6–18 month clocks"},
+ {band:"slow",head:"Start this month · slow, 3–6 months"},
+ {band:"med",head:"Weeks 2–4 · medium, 1–3 months"},
+ {band:"fast",head:"Anytime · fast, days to weeks"}
+];
+
+/* ═══════════ STATE ═══════════ */
+const state = {levers:{}, pivot:null, selLever:"segment", mode:"lived",
+  map:{lever:"segment", from:"", to:"", nodes:{}, nums:{}}};
+MAP_NODES.forEach(n=>state.map.nodes[n.id]={cur:"",nw:"",band:n.band});
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cascadeTimers = [];
+
+/* ═══════════ INIT ═══════════ */
+function init(){
+  document.querySelectorAll('.chips[data-lever]').forEach(box=>{
+    const key = box.dataset.lever;
+    const cfg = LEVERS[key];
+    state.levers[key] = cfg.def;
+    cfg.opts.forEach((opt,i)=>{
+      const b = document.createElement('button');
+      b.className = 'chip'+(i===cfg.def?' sel':' chip-ghost');
+      b.textContent = opt;
+      b.setAttribute('aria-disabled','true');
+      b.title = i===cfg.def ? 'The lived path for this lever' : 'Illustrative option, not the lived path';
+      box.appendChild(b);
+    });
+  });
+  const tabs = document.getElementById('leverTabs');
+  Object.keys(LEVERS).forEach(key=>{
+    const b = document.createElement('button');
+    b.className = 'ltab'+(key===state.selLever?' sel':'');
+    b.textContent = LEVERS[key].label;
+    b.onclick = ()=>{ state.selLever = key;
+      tabs.querySelectorAll('.ltab').forEach(t=>t.classList.remove('sel'));
+      b.classList.add('sel'); renderPivotCards(); };
+    tabs.appendChild(b);
+  });
+  renderPivotCards();
+  buildNumForm(document.getElementById('numGrid'), LIVED_NUMS);
+  const mlc = document.getElementById('mapLeverChips');
+  Object.keys(LEVERS).forEach(key=>{
+    const b = document.createElement('button');
+    b.className = 'chip'+(key===state.map.lever?' sel':'');
+    b.textContent = LEVERS[key].label;
+    b.onclick = ()=>{ state.map.lever = key;
+      mlc.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
+      b.classList.add('sel'); };
+    mlc.appendChild(b);
+  });
+  [1,2,3].forEach(w=>{
+    const box = document.getElementById('mapWave'+w);
+    MAP_NODES.filter(n=>n.wave===w).forEach(n=>{
+      const d = document.createElement('div');
+      d.className = 'map-node';
+      d.innerHTML = `<div class="map-node-head">
+          <div><div class="node-cat" style="margin-bottom:6px;">${n.cat}</div><div class="map-q">${n.q}</div></div>
+          <div class="band-pick" data-node="${n.id}">${Object.keys(BANDS).map(bk=>
+            `<button class="band-chip ${BANDS[bk].cls}${bk===n.band?' sel':''}" data-band="${bk}">${BANDS[bk].label}</button>`).join('')}</div>
+        </div>
+        <div class="cur-new">
+          <div class="field"><label>Current state</label><textarea data-node-cur="${n.id}" placeholder="${n.phCur}"></textarea></div>
+          <div class="field"><label>New state</label><textarea data-node-new="${n.id}" placeholder="${n.phNew}"></textarea></div>
+        </div>`;
+      box.appendChild(d);
+      d.querySelectorAll('.band-chip').forEach(bc=>{
+        bc.onclick = ()=>{
+          state.map.nodes[n.id].band = bc.dataset.band;
+          d.querySelectorAll('.band-chip').forEach(x=>x.classList.remove('sel'));
+          bc.classList.add('sel');
+        };
+      });
+      d.querySelector('[data-node-cur]').addEventListener('input', e=>{ state.map.nodes[n.id].cur = e.target.value; });
+      d.querySelector('[data-node-new]').addEventListener('input', e=>{ state.map.nodes[n.id].nw = e.target.value; });
+    });
+  });
+  buildNumForm(document.getElementById('mapNumGrid'), {}, true);
+  loadFromHash();
+}
+
+function buildNumForm(grid, defaults, isMap){
+  grid.innerHTML = NUM_FIELDS.map(f=>`
+    <div class="field"><label>${f.label}</label>
+    <input type="number" min="0" data-num${isMap?'-map':''}="${f.k}" placeholder="${f.ph}" ${defaults[f.k]!==undefined?`value="${defaults[f.k]}"`:''}></div>`).join('');
+  if(isMap){
+    grid.querySelectorAll('input').forEach(inp=>{
+      inp.addEventListener('input', e=>{
+        const v = parseFloat(e.target.value);
+        if(isNaN(v)) delete state.map.nums[e.target.dataset.numMap];
+        else state.map.nums[e.target.dataset.numMap] = v;
+      });
+    });
+  }
+}
+
+/* ═══════════ MODE + NAV ═══════════ */
+function setMode(m){
+  state.mode = m;
+  document.getElementById('modeLived').classList.toggle('sel', m==='lived');
+  document.getElementById('modeMap').classList.toggle('sel', m==='map');
+  document.getElementById('modeHint').textContent = m==='lived'
+    ? "Here is a worked example of a pivot from D2C to B2B2C for a drone edtech segment."
+    : "Your turn. Answer the same questions the lived cascade answered. Output: your own cascade, timeline, exposure sheet and where to start, shareable by link.";
+  if(m==='lived') go(0); else goMap(0);
+}
+
+function showScreen(id, stepText, dotIdx, dotTotal){
+  cascadeTimers.forEach(t=>clearTimeout(t)); cascadeTimers=[];
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('stepLabel').textContent = stepText;
+  const dots = document.getElementById('frameDots');
+  dots.innerHTML = Array.from({length:dotTotal},(_,i)=>`<span class="dot${i<=dotIdx?' on':''}"></span>`).join('');
+  document.getElementById('tool').scrollIntoView({behavior: reduced?'auto':'smooth'});
+}
+
+function go(n){
+  const labels = ["Step 1 of 3: Your starting GTM state","Step 2 of 3: Pull one lever","Step 3 of 3: The cascade"];
+  showScreen('s'+n, labels[n], n, 3);
+  if(n===2) renderCascade();
+}
+
+function goMap(n){
+  const labels = ["Step 1 of 6: Name your pivot","Step 2 of 6: Wave 1, the fast layer","Step 3 of 6: Wave 2, second order","Step 4 of 6: Wave 3, the slow layer","Step 5 of 6: Your numbers","Step 6 of 6: Your pivot map"];
+  showScreen('m'+n, labels[n], n, 6);
+  if(n===5) renderMapOutput();
+}
+
+/* ═══════════ LIVED MODE ═══════════ */
+function renderPivotCards(){
+  const box = document.getElementById('pivotCards');
+  box.innerHTML = '';
+  const list = PIVOTS.filter(p=>p.lever===state.selLever);
+  if(!list.length){
+    box.innerHTML = '<p style="color:var(--muted);font-size:.9rem;">No lived pivot path for this lever yet. Pick another lever, or switch to Map your own pivot and chart this one yourself.</p>';
+    return;
+  }
+  list.forEach(p=>{
+    const c = document.createElement('button');
+    c.className='pcard';
+    c.innerHTML = `<div class="pcard-route">${p.from} <span class="arrow">→</span> ${p.to}${p.flagship?'<span class="flagship">Flagship. Fully lived</span>':''}</div>
+      <div class="pcard-meta">${p.meta.map(m=>`<span>${m}</span>`).join('')}</div>`;
+    c.onclick = ()=>{ state.pivot = p; go(2); };
+    box.appendChild(c);
+  });
+}
+
+function renderCascade(){
+  const p = state.pivot;
+  if(!p) return;
+  document.getElementById('cascadeLever').textContent = LEVERS[p.lever].label+' lever pulled';
+  document.getElementById('cascadeRoute').innerHTML = `${p.from} <span class="arrow">→</span> ${p.to}`;
+  const body = document.getElementById('cascadeBody');
+  body.innerHTML = '';
+  p.waves.forEach(w=>{
+    const wd = document.createElement('div');
+    wd.className='wave';
+    wd.innerHTML = `<div class="wave-head"><span class="wave-num serif">${w.num}</span><span class="wave-title">Wave ${w.num} · ${w.title}</span></div>
+      <div class="nodes">${w.nodes.map(n=>{
+        const b = BANDS[n.band];
+        return `<div class="node"><div class="node-top"><span class="node-cat">${n.cat}</span><span class="node-badge ${b.cls}">${b.label}</span></div><p>${n.text}</p></div>`;
+      }).join('')}</div>`;
+    body.appendChild(wd);
+  });
+  if(p.note){
+    const fn = document.createElement('div');
+    fn.className='founder-note';
+    fn.innerHTML = `<span class="fn-label">${p.note.label}</span>${p.note.text}`;
+    body.appendChild(fn);
+  }
+  renderTimeline(p);
+  renderCost(p);
+  playCascade(false);
+}
+
+function playCascade(isReplay){
+  animateCascade('#cascadeBody', ['tlBlock','costBlock'], isReplay);
+}
+
+function animateCascade(bodySel, outIds, isReplay){
+  cascadeTimers.forEach(t=>clearTimeout(t)); cascadeTimers=[];
+  const waves = [...document.querySelectorAll(bodySel+' .wave')];
+  const fn = document.querySelector(bodySel+' .founder-note');
+  const outs = outIds.map(id=>document.getElementById(id));
+  [...waves, fn, ...outs].forEach(el=>{ if(el){ el.classList.remove('shown'); if(el.querySelectorAll) el.querySelectorAll('.node').forEach(n=>n.classList.remove('shown')); }});
+  if(reduced){
+    [...waves, fn, ...outs].forEach(el=>{ if(el){ el.classList.add('shown'); if(el.querySelectorAll) el.querySelectorAll('.node').forEach(n=>n.classList.add('shown')); }});
+    return;
+  }
+  let t = isReplay? 150 : 400;
+  waves.forEach(w=>{
+    cascadeTimers.push(setTimeout(()=>w.classList.add('shown'), t));
+    const nodes = w.querySelectorAll('.node');
+    nodes.forEach((n,i)=>{
+      cascadeTimers.push(setTimeout(()=>n.classList.add('shown'), t + 200 + i*160));
+    });
+    t += 600 + nodes.length*160;
+  });
+  if(fn){ cascadeTimers.push(setTimeout(()=>fn.classList.add('shown'), t)); t += 500; }
+  outs.forEach(o=>{ if(o){ cascadeTimers.push(setTimeout(()=>o.classList.add('shown'), t)); t += 400; }});
+}
+
+function renderTimeline(p){
+  buildTimelineRows(document.getElementById('tlRows'), p.timeline);
+  document.getElementById('tlFoot').textContent = p.tlFoot;
+}
+
+function buildTimelineRows(container, items){
+  container.innerHTML = '';
+  items.forEach(item=>{
+    const b = BANDS[item.band];
+    const [s,e] = item.span || b.span;
+    const row = document.createElement('div');
+    row.className='tl-row';
+    const leftPct = ((s-1)/6)*100;
+    const widthPct = ((e-s+1)/6)*100;
+    row.innerHTML = `<div class="tl-label">${item.label}</div>
+      <div class="tl-track">${'<div class="tl-cell"></div>'.repeat(6)}
+        <div class="tl-bar" style="left:${leftPct}%;width:${widthPct}%;background:${b.bar};"></div>
+      </div>`;
+    container.appendChild(row);
+  });
+}
+
+function renderCost(p){
+  const g = document.getElementById('costGrid');
+  const cards = p.cost(NUMS);
+  g.innerHTML = cards.map(c=>`
+    <div class="cost-card">
+      <div class="cost-cat">${c.cat}</div>
+      <div class="cost-flip"><span class="cost-before">${c.before}</span><span style="color:var(--accent);">→</span><span class="cost-after serif">${c.after}</span></div>
+      <p class="cost-note">${c.note}</p>
+    </div>`).join('')
+    + `<div class="inv-card"><div class="cost-cat">Inventory & working capital: the hardware layer</div><p>${p.inv}</p></div>`;
+  document.getElementById('calibNote').textContent = numsAreCustom
+    ? "Showing your numbers. The cascade structure and delays stay the same. That part is universal. Only the magnitudes are yours."
+    : "Calibration: figures come from one real journey. Drone kits, India. ₹5,500 AOV, 100 unit MOQ, ₹2.7L per inventory cycle, 14 day vendor lead time. Enter your own below. The structure holds either way.";
+}
+
+function toggleNums(){
+  document.getElementById('numPanel').classList.toggle('open');
+}
+function applyNums(){
+  const inputs = document.querySelectorAll('#numGrid input');
+  inputs.forEach(inp=>{
+    const v = parseFloat(inp.value);
+    if(!isNaN(v) && v>=0) NUMS[inp.dataset.num] = v;
+  });
+  numsAreCustom = true;
+  document.getElementById('appliedFlag').classList.add('on');
+  renderCost(state.pivot);
+  document.getElementById('costBlock').classList.add('shown');
+}
+function resetNums(){
+  NUMS = {...LIVED_NUMS};
+  numsAreCustom = false;
+  document.getElementById('appliedFlag').classList.remove('on');
+  buildNumForm(document.getElementById('numGrid'), LIVED_NUMS);
+  renderCost(state.pivot);
+  document.getElementById('costBlock').classList.add('shown');
+}
+
+/* ═══════════ MAP MODE ═══════════ */
+function nodeHTML(nd){
+  const parts = [];
+  if(nd.cur.trim()) parts.push(CS+esc(nd.cur));
+  if(nd.nw.trim()) parts.push(NS+esc(nd.nw));
+  return parts.join('<br>');
+}
+
+function renderMapOutput(){
+  const m = state.map;
+  m.from = document.getElementById('mapFrom').value;
+  m.to = document.getElementById('mapTo').value;
+  document.getElementById('mapOutLever').textContent = LEVERS[m.lever].label + ' lever pulled: your map';
+  document.getElementById('mapOutRoute').innerHTML =
+    `${esc(m.from)||'Current state'} <span class="arrow">→</span> ${esc(m.to)||'New state'}`;
+  const body = document.getElementById('mapOutBody');
+  body.innerHTML = '';
+  const answered = n => (m.nodes[n.id].cur.trim() || m.nodes[n.id].nw.trim());
+  [1,2,3].forEach(w=>{
+    const nodes = MAP_NODES.filter(n=>n.wave===w && answered(n));
+    if(!nodes.length) return;
+    const wd = document.createElement('div');
+    wd.className='wave';
+    wd.innerHTML = `<div class="wave-head"><span class="wave-num serif">0${w}</span><span class="wave-title">Wave 0${w} · ${WAVE_TITLES[w]}</span></div>
+      <div class="nodes">${nodes.map(n=>{
+        const nd = m.nodes[n.id];
+        const b = BANDS[nd.band];
+        return `<div class="node"><div class="node-top"><span class="node-cat">${n.cat}</span><span class="node-badge ${b.cls}">${b.label}</span></div><p>${nodeHTML(nd)}</p></div>`;
+      }).join('')}</div>`;
+    body.appendChild(wd);
+  });
+  if(!body.children.length){
+    body.innerHTML = '<p style="color:var(--muted);margin-top:24px;">Nothing filled in yet. Go back and answer at least a few. The map is only as honest as what you write in it.</p>';
+  }
+  const tlItems = MAP_NODES.filter(answered).map(n=>({label:n.cat, band:m.nodes[n.id].band}));
+  const order = {fast:0,med:1,slow:2,struct:3};
+  tlItems.sort((a,b)=>order[a.band]-order[b.band]);
+  buildTimelineRows(document.getElementById('mapTlRows'), tlItems);
+  const slowest = tlItems.length? tlItems[tlItems.length-1].band : null;
+  document.getElementById('mapTlFoot').textContent = slowest
+    ? (slowest==='struct' ? "Your slowest consequence is structural: this pivot is done in 6 to 18 months, not when the messaging changes."
+      : slowest==='slow' ? "Your slowest consequence settles in 3 to 6 months. Budget cash and patience for the full window."
+      : "Your consequences all settle within about 3 months. A genuinely fast pivot, if you have been honest above.")
+    : "";
+  renderMapCost();
+  renderMapTodo();
+  playMapCascade(false);
+}
+
+function playMapCascade(isReplay){
+  animateCascade('#mapOutBody', ['mapTlBlock','mapCostBlock','mapTodoBlock'], isReplay);
+}
+
+function renderMapCost(){
+  const n = state.map.nums;
+  const g = document.getElementById('mapCostGrid');
+  const cards = [];
+  if(n.moqCash) cards.push({cat:"Cash locked per inventory cycle",before:"",after:inr(n.moqCash),note:(n.moqUnits? n.moqUnits+" units per reorder. " : "")+"This is the cash that sits in stock while the pivot's slow layer plays out."});
+  if(n.aov && n.margin) cards.push({cat:"Unit economics at stake",before:"",after:inr(n.aov)+" AOV · "+n.margin+"% margin",note:"Every channel or price pivot re-derives its math from these two numbers."});
+  if(n.cac && n.sales) cards.push({cat:"CAC shape flip",before:inr(n.cac)+" / customer, elastic",after:inr(n.sales)+" / month, fixed",note:"If your pivot moves toward assisted sales, this fixed cost starts before revenue does."});
+  else if(n.cac) cards.push({cat:"Current CAC",before:"",after:inr(n.cac)+" / customer",note:"Assume this number teaches you nothing in the new segment. A/B learning restarts."});
+  if(n.advancePct!==undefined) cards.push({cat:"Payment gap exposure",before:"",after:n.advancePct+"% advance · "+(100-n.advancePct)+"% you finance",note:"The balance is working capital you lend your customer until delivery completes."});
+  if(n.mkAllIn && n.margin) cards.push({cat:"Marketplace margin math",before:n.margin+"% own channel",after:Math.max(0,n.margin-n.mkAllIn)+"% after platform costs",note:"Only relevant if your pivot touches marketplace channels, but worth knowing cold."});
+  g.innerHTML = cards.length
+    ? cards.map(c=>`<div class="cost-card"><div class="cost-cat">${c.cat}</div>
+        <div class="cost-flip">${c.before?`<span class="cost-before">${c.before}</span><span style="color:var(--accent);">→</span>`:''}<span class="cost-after serif">${c.after}</span></div>
+        <p class="cost-note">${c.note}</p></div>`).join('')
+    : '<div class="inv-card"><div class="cost-cat">No numbers entered</div><p>Your map still stands on the consequences and delays above. Add numbers any time to see your cash exposure. Rough ranges are enough.</p></div>';
+}
+
+function renderMapTodo(){
+  const m = state.map;
+  const list = document.getElementById('mapTodoList');
+  const answered = MAP_NODES.filter(n=>(m.nodes[n.id].cur.trim() || m.nodes[n.id].nw.trim()));
+  if(!answered.length){ list.innerHTML=''; return; }
+  let num = 1;
+  let html = '';
+  TODO_GROUPS.forEach(g=>{
+    const items = answered.filter(n=>m.nodes[n.id].band===g.band);
+    if(!items.length) return;
+    html += `<div class="todo-group"><span class="todo-head ${BANDS[g.band].cls}">${g.head}</span>`;
+    items.forEach(n=>{
+      html += `<div class="todo-item"><span class="todo-num serif">${num++}</span><div><span class="todo-cat">${n.cat}</span>${ACTIONS[n.id]}</div></div>`;
+    });
+    html += `</div>`;
+  });
+  list.innerHTML = html;
+}
+
+/* ═══════════ SHARE ═══════════ */
+function esc(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+function copyShareLink(){
+  state.map.from = document.getElementById('mapFrom').value;
+  state.map.to = document.getElementById('mapTo').value;
+  const payload = {v:2, lever:state.map.lever, from:state.map.from, to:state.map.to,
+    nodes:Object.fromEntries(Object.entries(state.map.nodes).filter(([k,v])=>v.cur.trim()||v.nw.trim()).map(([k,v])=>[k,[v.cur,v.nw,v.band]])),
+    nums:state.map.nums};
+  const enc = btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  const url = location.origin + location.pathname + '#m=' + enc;
+  const done = ()=>{ const ok=document.getElementById('copyOk'); ok.classList.add('on'); setTimeout(()=>ok.classList.remove('on'), 3500); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done).catch(()=>{ prompt('Copy this link:', url); });
+  } else { prompt('Copy this link:', url); }
+  history.replaceState(null,'', '#m='+enc);
+}
+
+function loadFromHash(){
+  const h = location.hash;
+  if(!h.startsWith('#m=')) return;
+  try{
+    let b64 = h.slice(3).replace(/-/g,'+').replace(/_/g,'/');
+    while(b64.length % 4) b64 += '=';
+    const payload = JSON.parse(decodeURIComponent(escape(atob(b64))));
+    if(!payload || payload.v!==2) return;
+    if(LEVERS[payload.lever]) state.map.lever = payload.lever;
+    state.map.from = String(payload.from||'').slice(0,200);
+    state.map.to = String(payload.to||'').slice(0,200);
+    if(payload.nodes) Object.entries(payload.nodes).forEach(([k,v])=>{
+      if(state.map.nodes[k] && Array.isArray(v)){
+        state.map.nodes[k].cur = String(v[0]||'').slice(0,1200);
+        state.map.nodes[k].nw = String(v[1]||'').slice(0,1200);
+        if(BANDS[v[2]]) state.map.nodes[k].band = v[2];
+      }
+    });
+    if(payload.nums) Object.keys(payload.nums).forEach(k=>{
+      const val = parseFloat(payload.nums[k]);
+      if(NUM_FIELDS.some(f=>f.k===k) && !isNaN(val) && val>=0) state.map.nums[k] = val;
+    });
+    document.getElementById('mapFrom').value = state.map.from;
+    document.getElementById('mapTo').value = state.map.to;
+    document.querySelectorAll('[data-node-cur]').forEach(t=>{ t.value = state.map.nodes[t.dataset.nodeCur].cur; });
+    document.querySelectorAll('[data-node-new]').forEach(t=>{ t.value = state.map.nodes[t.dataset.nodeNew].nw; });
+    document.querySelectorAll('.band-pick').forEach(bp=>{
+      const id = bp.dataset.node;
+      bp.querySelectorAll('.band-chip').forEach(bc=>bc.classList.toggle('sel', bc.dataset.band===state.map.nodes[id].band));
+    });
+    document.querySelectorAll('[data-num-map]').forEach(inp=>{
+      const k = inp.dataset.numMap;
+      if(state.map.nums[k]!==undefined) inp.value = state.map.nums[k];
+    });
+    state.mode='map';
+    document.getElementById('modeLived').classList.remove('sel');
+    document.getElementById('modeMap').classList.add('sel');
+    document.getElementById('modeHint').textContent = "You are viewing a shared pivot map. Explore it, then map your own, or see the lived cascade it was modeled on.";
+    goMap(5);
+  }catch(e){ /* malformed hash: ignore, load normally */ }
+}
+
+init();
+</script>
+
+<!-- Analytics events: wraps existing handlers, fires GoatCounter custom events.
+     Safe no-op if GoatCounter is blocked or not yet loaded. -->
+<script>
+(function(){
+  function gc(name){
+    try{
+      if(window.goatcounter && window.goatcounter.count){
+        window.goatcounter.count({ path: name, title: name, event: true });
+      }
+    }catch(e){/* never break the app for analytics */}
+  }
+  // Mode toggle: are people exploring the example or mapping their own?
+  if(window.setMode){ var _sm = window.setMode; window.setMode = function(m){ gc('mode-'+m); return _sm.apply(this, arguments); }; }
+  // Lived flow: reached the cascade / chose a lever.
+  if(window.go){ var _go = window.go; window.go = function(n){ if(n===1) gc('lived-choose-lever'); if(n===2) gc('lived-view-cascade'); return _go.apply(this, arguments); }; }
+  // Map flow: started mapping (wave 1) and completed the map (step 5).
+  if(window.goMap){ var _gm = window.goMap; window.goMap = function(n){ if(n===1) gc('map-start'); if(n===5) gc('map-complete'); return _gm.apply(this, arguments); }; }
+  // Strongest value signals: shared a link, or saved as PDF.
+  if(window.copyShareLink){ var _cs = window.copyShareLink; window.copyShareLink = function(){ gc('share-copy-link'); return _cs.apply(this, arguments); }; }
+  var _print = window.print; window.print = function(){ gc('save-pdf'); return _print.apply(window, arguments); };
+  // Which pivot / lever gets explored (delegated, survives dynamic rendering).
+  document.addEventListener('click', function(e){
+    var chip = e.target.closest('.chips[data-lever] button');
+    if(chip){ var box = chip.closest('.chips[data-lever]'); if(box) gc('lever-'+box.dataset.lever); }
+  }, true);
+})();
+</script>
+
+<!-- Analytics: GoatCounter. Free, no cookies, no banner needed.
+     Setup (2 minutes):
+     1. Sign up free at https://www.goatcounter.com
+     2. Choose a code, e.g. gtmsignallab
+     3. Replace gtmsignallab below with your code
+     Dashboard lives at https://YOURCODE.goatcounter.com -->
+<script data-goatcounter="https://gtmsignallab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
