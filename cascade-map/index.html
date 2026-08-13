@@ -125,16 +125,16 @@ header{border-bottom:1px solid var(--border);}
 .out-title{font-family:'Instrument Serif',serif;font-size:1.5rem;margin-bottom:4px;}
 .out-sub{color:var(--muted);font-size:.88rem;margin-bottom:20px;max-width:640px;}
 .tl{border:1px solid var(--border);border-radius:2px;background:#fff;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.tl-inner{min-width:640px;}
-.tl-axis{display:grid;grid-template-columns:150px repeat(6,1fr);border-bottom:1px solid var(--border);}
-.tl-axis span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 8px;border-left:1px solid var(--border);}
-.tl-axis span:first-child{border-left:none;}
-.tl-row{display:grid;grid-template-columns:150px repeat(6,1fr);align-items:center;border-bottom:1px solid var(--border);min-height:44px;}
+.tl-inner{min-width:560px;}
+.tl-axis{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--border);}
+.tl-axis-sp{padding:10px 8px;}
+.tl-scale{display:grid;grid-template-columns:repeat(6,1fr);}
+.tl-scale span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);padding:10px 6px;text-align:right;border-left:1px solid var(--border);}
+.tl-row{display:grid;grid-template-columns:150px 1fr;align-items:center;border-bottom:1px solid var(--border);min-height:40px;}
 .tl-row:last-child{border-bottom:none;}
-.tl-label{font-size:.78rem;color:var(--ink);padding:8px 10px;line-height:1.35;}
-.tl-track{grid-column:2/8;display:grid;grid-template-columns:repeat(6,1fr);align-self:stretch;position:relative;}
-.tl-cell{border-left:1px solid var(--border);}
-.tl-bar{position:absolute;top:50%;transform:translateY(-50%);height:12px;border-radius:2px;min-width:12px;}
+.tl-label{font-size:.78rem;color:var(--ink);padding:6px 10px;line-height:1.3;}
+.tl-track{position:relative;align-self:stretch;display:flex;align-items:center;background-image:repeating-linear-gradient(to right, var(--border) 0, var(--border) 1px, transparent 1px, transparent calc(100% / 6));}
+.tl-bar{height:11px;border-radius:2px;min-width:11px;box-sizing:border-box;}
 .tl-foot{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-top:1px solid var(--border);}
 
 .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -170,7 +170,10 @@ header{border-bottom:1px solid var(--border);}
 .map-node-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;}
 .map-q{font-size:.94rem;line-height:1.5;max-width:560px;}
 .map-q strong{font-weight:500;}
-.band-pick{display:flex;gap:6px;flex-wrap:wrap;}
+.band-pick{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.when-lbl{width:100%;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.when-select{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.04em;padding:6px 10px;border:1px solid var(--border);border-radius:2px;background:#fff;color:var(--ink);cursor:pointer;min-width:130px;}
+.when-select:focus{outline:none;border-color:var(--accent);}
 .band-chip{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 9px;border-radius:2px;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:all .12s;}
 .band-chip.sel.b-fast{background:var(--green-bg);color:var(--green);border-color:var(--green);}
 .band-chip.sel.b-med{background:var(--blue-bg);color:var(--blue);border-color:var(--blue);}
@@ -184,9 +187,11 @@ header{border-bottom:1px solid var(--border);}
 .copy-ok.on{display:inline;}
 .map-banner{border:1px solid var(--border);border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:2px;padding:12px 16px;font-size:.85rem;color:var(--accent-dark);margin-bottom:22px;max-width:720px;}
 
-.todo-group{margin-bottom:20px;}
+#mapTodoList,#todoList{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;}
+.todo-group{margin-bottom:0;border:1px solid var(--border);border-radius:2px;padding:14px 16px;background:var(--paper2, #faf9f6);}
 .todo-head{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding:3px 9px;display:inline-block;border-radius:2px;}
-.todo-item{font-size:.88rem;padding:12px 16px;border:1px solid var(--border);border-radius:2px;background:#fff;margin-bottom:8px;display:flex;gap:12px;align-items:baseline;}
+.todo-item{font-size:.85rem;padding:8px 0;border-bottom:1px solid var(--border);background:transparent;margin-bottom:0;display:flex;gap:10px;align-items:baseline;}
+.todo-item:last-child{border-bottom:none;padding-bottom:0;}
 .todo-num{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--accent);min-width:22px;}
 .todo-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
 
@@ -246,27 +251,57 @@ footer{border-top:1px solid var(--border);padding:34px 0 44px;}
   .restart-row .btn-main,.restart-row .btn-ghost,.restart-row a{width:100%;text-align:center;}
   .share-row{flex-direction:column;align-items:stretch;}
   .share-row .btn-main,.share-row .btn-ghost{width:100%;text-align:center;}
-  .tl-axis{grid-template-columns:96px repeat(6,1fr);}
-  .tl-row{grid-template-columns:96px repeat(6,1fr);}
-  .tl-inner{min-width:480px;}
-  .tl-label{font-size:0.72rem;padding:8px 8px;}
-  .tl-axis span{font-size:8px;padding:8px 4px;}
+  .tl-axis{grid-template-columns:88px 1fr;}
+  .tl-row{grid-template-columns:88px 1fr;}
+  .tl-inner{min-width:440px;}
+  .tl-label{font-size:0.7rem;padding:6px 6px;}
+  .tl-scale span{font-size:8px;padding:8px 4px;}
   .out-title{font-size:1.3rem;}
-  .todo-item{padding:11px 13px;}
+  #mapTodoList,#todoList{grid-template-columns:1fr;gap:14px;}
+  .when-select{min-width:120px;}
 }
 @media(prefers-reduced-motion:reduce){
   .wave,.node,.out-block,.founder-note{transition:none;}
   html{scroll-behavior:auto;}
 }
+@page{margin:11mm;}
 @media print{
+  *, *::before, *::after{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
   header,footer,.hero,.legend,.mode-row,.mode-hint,.frame-head,.replay,.restart-row,.share-row,.nav-row,.num-panel,.num-toggle,.section-label{display:none !important;}
-  body{background:#fff;}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:12px;}
   .tool-frame{border:none;}
   .screen{display:none;padding:0;}
   .screen.active{display:block;}
   .wave,.node,.out-block,.founder-note{opacity:1 !important;transform:none !important;}
-  .tl{overflow:visible;}
-  .tool-section{padding:10px 0;}
+  .tool-section{padding:0 !important;}
+  /* Compaction: tighten everything so the whole map fits ~2 pages */
+  .cascade-head{margin-bottom:8px !important;}
+  .wave{margin-top:12px !important;}
+  .wave-head{margin-bottom:6px !important;}
+  .nodes{gap:8px !important;}
+  .node{padding:8px 10px !important;font-size:11px !important;}
+  .node p{margin:2px 0 0 !important;line-height:1.35 !important;}
+  .out-block{margin-top:14px !important;}
+  .out-title{font-size:1.15rem !important;margin-bottom:2px !important;}
+  .out-sub{font-size:11px !important;margin-bottom:8px !important;}
+  /* Timeline (Gantt): fit the page; bars and gridlines are colour, so force them to print */
+  .tl{overflow:visible !important;}
+  .tl-inner{min-width:0 !important;width:100% !important;}
+  .tl-axis,.tl-row{grid-template-columns:96px 1fr !important;}
+  .tl-scale{grid-template-columns:repeat(6,1fr) !important;}
+  .tl-row{min-height:26px !important;}
+  .tl-label{font-size:0.66rem !important;padding:4px 8px !important;}
+  .tl-track,.tl-bar{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  .node-badge,.todo-head,.legend-band{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  /* Exposure + where-to-start stay in 2 columns so they read as a compact snapshot */
+  .cost-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:8px !important;}
+  .cost-card,.inv-card{padding:8px 10px !important;font-size:11px !important;}
+  #mapTodoList,#todoList{grid-template-columns:1fr 1fr !important;gap:8px 14px !important;}
+  .todo-group{padding:8px 10px !important;}
+  .todo-item{font-size:11px !important;padding:5px 0 !important;}
+  /* Keep whole blocks together so nothing splits mid-card or merges across a page break */
+  .out-block,.tl-row,.node,.cost-card,.inv-card,.todo-group,.founder-note,.calib{break-inside:avoid;page-break-inside:avoid;}
+  .calib{margin-top:12px !important;font-size:10px !important;}
 }
 </style>
 </head>
@@ -367,7 +402,7 @@ footer{border-top:1px solid var(--border);padding:34px 0 44px;}
           <div class="out-title serif">Pivot pain timeline</div>
           <p class="out-sub">When each shockwave hits, and how long until it stabilises. The gap between the first row and the last is the disorientation zone.</p>
           <div class="tl"><div class="tl-inner">
-            <div class="tl-axis"><span></span><span>Week 1</span><span>Month 1</span><span>Month 3</span><span>Month 6</span><span>Month 12</span><span>Month 18</span></div>
+            <div class="tl-axis"><div class="tl-axis-sp"></div><div class="tl-scale"><span>3 mo</span><span>6 mo</span><span>9 mo</span><span>12 mo</span><span>15 mo</span><span>18 mo</span></div></div>
             <div id="tlRows"></div>
             <div class="tl-foot" id="tlFoot"></div>
           </div></div>
@@ -403,7 +438,7 @@ footer{border-top:1px solid var(--border);padding:34px 0 44px;}
       <div class="screen" data-mode="map" id="m0">
         <div class="t-title serif">Name the pivot you are weighing</div>
         <p class="t-sub">One lever at a time. That is the discipline. Which lever moves, from what, to what?</p>
-        <div class="map-banner">You will answer the same questions the lived cascade answered. Every consequence you write carries a delay band. That rule keeps this honest: <strong>the pivot is not done when the messaging changes. It is done when the structural layer settles.</strong></div>
+        <div class="map-banner">You will answer the same questions the lived cascade answered. For every consequence, you say <strong>when it actually lands</strong> on your timeline, not a vague bucket. That rule keeps this honest: <strong>the pivot is not done when the messaging changes. It is done when the slowest consequence settles.</strong></div>
         <div class="lever-row"><div class="lever-name"><span class="lever-big">Which lever are you pulling?</span></div>
           <div class="chips" id="mapLeverChips"></div></div>
         <div class="lever-name" style="margin-top:20px;"><span class="lever-big">From → To</span></div>
@@ -455,9 +490,9 @@ footer{border-top:1px solid var(--border);padding:34px 0 44px;}
 
         <div class="out-block" id="mapTlBlock">
           <div class="out-title serif">Your pivot pain timeline</div>
-          <p class="out-sub">Built from the delay bands you assigned. The distance between your first row and your last is your disorientation zone. Plan for all of it, not just week one.</p>
+          <p class="out-sub">Built from the timing you assigned to each consequence. The distance between your first row and your last is your disorientation zone. Plan for all of it, not just week one.</p>
           <div class="tl"><div class="tl-inner">
-            <div class="tl-axis"><span></span><span>Week 1</span><span>Month 1</span><span>Month 3</span><span>Month 6</span><span>Month 12</span><span>Month 18</span></div>
+            <div class="tl-axis"><div class="tl-axis-sp"></div><div class="tl-scale"><span>3 mo</span><span>6 mo</span><span>9 mo</span><span>12 mo</span><span>15 mo</span><span>18 mo</span></div></div>
             <div id="mapTlRows"></div>
             <div class="tl-foot" id="mapTlFoot"></div>
           </div></div>
@@ -514,6 +549,22 @@ const BANDS = {
   slow:{cls:"b-slow",label:"Slow",bar:"var(--orange)",span:[3,4]},
   struct:{cls:"b-struct",label:"Structural",bar:"var(--red)",span:[4,6]}
 };
+
+const TL_MAX = 18; /* timeline horizon in months */
+const WHEN_OPTS = [
+  {v:"w1",label:"Week 1"},{v:"w2",label:"Week 2"},{v:"w3",label:"Week 3"},{v:"w4",label:"Week 4"},
+  {v:"m1",label:"Month 1"},{v:"m2",label:"Month 2"},{v:"m3",label:"Month 3"},{v:"m4",label:"Month 4"},
+  {v:"m5",label:"Month 5"},{v:"m6",label:"Month 6"},{v:"m7",label:"Month 7"},{v:"m8",label:"Month 8"},
+  {v:"m9",label:"Month 9"},{v:"m10",label:"Month 10"},{v:"m11",label:"Month 11"},{v:"m12",label:"Month 12"},
+  {v:"m13",label:"Month 13"},{v:"m14",label:"Month 14"},{v:"m15",label:"Month 15"},{v:"m16",label:"Month 16"},
+  {v:"m17",label:"Month 17"},{v:"m18",label:"Month 18"}
+];
+function selMonths(sel){ if(!sel) return 1; const n=+sel.slice(1); return sel[0]==="w" ? n/4 : n; }
+function selLabel(sel){ const o=WHEN_OPTS.find(o=>o.v===sel); return o?o.label:""; }
+function monthBand(mo){ return mo<=1?"fast":mo<=3?"med":mo<=6?"slow":"struct"; }
+function bandSel(band){ return band==="fast"?"w1":band==="med"?"m2":band==="slow"?"m6":"m18"; }
+function colMonth(col){ return {1:0.25,2:1,3:3,4:6,5:12,6:18}[col]||0.25; }
+function colToSel(col){ return {1:"w1",2:"m1",3:"m3",4:"m6",5:"m12",6:"m18"}[col]||"w1"; }
 
 const LIVED_NUMS = {aov:5500, margin:45, mkAllIn:27, cac:500, sales:20000, moqUnits:100, moqCash:270000, advancePct:50, leadDays:14};
 let NUMS = {...LIVED_NUMS};
@@ -848,7 +899,7 @@ const TODO_GROUPS = [
 /* ═══════════ STATE ═══════════ */
 const state = {levers:{}, pivot:null, selLever:"segment", mode:"lived",
   map:{lever:"segment", from:"", to:"", nodes:{}, nums:{}}};
-MAP_NODES.forEach(n=>state.map.nodes[n.id]={cur:"",nw:"",band:n.band});
+MAP_NODES.forEach(n=>state.map.nodes[n.id]={cur:"",nw:"",sel:bandSel(n.band),band:n.band});
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let cascadeTimers = [];
 
@@ -896,20 +947,21 @@ function init(){
       d.className = 'map-node';
       d.innerHTML = `<div class="map-node-head">
           <div><div class="node-cat" style="margin-bottom:6px;">${n.cat}</div><div class="map-q">${n.q}</div></div>
-          <div class="band-pick" data-node="${n.id}">${Object.keys(BANDS).map(bk=>
-            `<button class="band-chip ${BANDS[bk].cls}${bk===n.band?' sel':''}" data-band="${bk}">${BANDS[bk].label}</button>`).join('')}</div>
+          <div class="band-pick" data-node="${n.id}"><span class="when-lbl">When does this actually land?</span>
+            <select class="when-select" data-node-sel="${n.id}">
+              <optgroup label="Weeks">${WHEN_OPTS.filter(o=>o.v[0]==='w').map(o=>`<option value="${o.v}"${o.v===bandSel(n.band)?' selected':''}>${o.label}</option>`).join('')}</optgroup>
+              <optgroup label="Months">${WHEN_OPTS.filter(o=>o.v[0]==='m').map(o=>`<option value="${o.v}"${o.v===bandSel(n.band)?' selected':''}>${o.label}</option>`).join('')}</optgroup>
+            </select></div>
         </div>
         <div class="cur-new">
           <div class="field"><label>Current state</label><textarea data-node-cur="${n.id}" placeholder="${n.phCur}"></textarea></div>
           <div class="field"><label>New state</label><textarea data-node-new="${n.id}" placeholder="${n.phNew}"></textarea></div>
         </div>`;
       box.appendChild(d);
-      d.querySelectorAll('.band-chip').forEach(bc=>{
-        bc.onclick = ()=>{
-          state.map.nodes[n.id].band = bc.dataset.band;
-          d.querySelectorAll('.band-chip').forEach(x=>x.classList.remove('sel'));
-          bc.classList.add('sel');
-        };
+      const sel = d.querySelector('.when-select');
+      if(sel) sel.addEventListener('change', ()=>{
+        state.map.nodes[n.id].sel = sel.value;
+        state.map.nodes[n.id].band = monthBand(selMonths(sel.value));
       });
       d.querySelector('[data-node-cur]').addEventListener('input', e=>{ state.map.nodes[n.id].cur = e.target.value; });
       d.querySelector('[data-node-new]').addEventListener('input', e=>{ state.map.nodes[n.id].nw = e.target.value; });
@@ -1049,16 +1101,16 @@ function renderTimeline(p){
 function buildTimelineRows(container, items){
   container.innerHTML = '';
   items.forEach(item=>{
-    const b = BANDS[item.band];
-    const [s,e] = item.span || b.span;
+    let startMo, endMo, band;
+    if(typeof item.months==='number'){ startMo=endMo=item.months; band=item.band||monthBand(item.months); }
+    else { const b=BANDS[item.band]; const [s,e]=item.span||b.span; startMo=colMonth(s); endMo=colMonth(e); band=item.band; }
+    const clamp = v => Math.max(0, Math.min(TL_MAX, v));
+    const leftPct = (clamp(startMo)/TL_MAX)*100;
+    const widthPct = ((clamp(endMo)-clamp(startMo))/TL_MAX)*100;
     const row = document.createElement('div');
     row.className='tl-row';
-    const leftPct = ((s-1)/6)*100;
-    const widthPct = ((e-s+1)/6)*100;
-    row.innerHTML = `<div class="tl-label">${item.label}</div>
-      <div class="tl-track">${'<div class="tl-cell"></div>'.repeat(6)}
-        <div class="tl-bar" style="left:${leftPct}%;width:${widthPct}%;background:${b.bar};"></div>
-      </div>`;
+    row.innerHTML = `<div class="tl-label">${item.label}</div>`
+      + `<div class="tl-track"><div class="tl-bar" style="margin-left:${leftPct.toFixed(2)}%;width:${widthPct.toFixed(2)}%;background:${BANDS[band].bar};"></div></div>`;
     container.appendChild(row);
   });
 }
@@ -1127,23 +1179,24 @@ function renderMapOutput(){
     wd.innerHTML = `<div class="wave-head"><span class="wave-num serif">0${w}</span><span class="wave-title">Wave 0${w} · ${WAVE_TITLES[w]}</span></div>
       <div class="nodes">${nodes.map(n=>{
         const nd = m.nodes[n.id];
-        const b = BANDS[nd.band];
-        return `<div class="node"><div class="node-top"><span class="node-cat">${n.cat}</span><span class="node-badge ${b.cls}">${b.label}</span></div><p>${nodeHTML(nd)}</p></div>`;
+        const b = BANDS[monthBand(selMonths(nd.sel))];
+        return `<div class="node"><div class="node-top"><span class="node-cat">${n.cat}</span><span class="node-badge ${b.cls}">${selLabel(nd.sel)}</span></div><p>${nodeHTML(nd)}</p></div>`;
       }).join('')}</div>`;
     body.appendChild(wd);
   });
   if(!body.children.length){
     body.innerHTML = '<p style="color:var(--muted);margin-top:24px;">Nothing filled in yet. Go back and answer at least a few. The map is only as honest as what you write in it.</p>';
   }
-  const tlItems = MAP_NODES.filter(answered).map(n=>({label:n.cat, band:m.nodes[n.id].band}));
-  const order = {fast:0,med:1,slow:2,struct:3};
-  tlItems.sort((a,b)=>order[a.band]-order[b.band]);
+  const tlItems = MAP_NODES.filter(answered).map(n=>{const mo=selMonths(m.nodes[n.id].sel); return {label:n.cat, months:mo, band:monthBand(mo)};});
+  tlItems.sort((a,b)=>a.months-b.months);
   buildTimelineRows(document.getElementById('mapTlRows'), tlItems);
-  const slowest = tlItems.length? tlItems[tlItems.length-1].band : null;
-  document.getElementById('mapTlFoot').textContent = slowest
-    ? (slowest==='struct' ? "Your slowest consequence is structural: this pivot is done in 6 to 18 months, not when the messaging changes."
-      : slowest==='slow' ? "Your slowest consequence settles in 3 to 6 months. Budget cash and patience for the full window."
-      : "Your consequences all settle within about 3 months. A genuinely fast pivot, if you have been honest above.")
+  const maxMo = tlItems.length? Math.max(...tlItems.map(t=>t.months)) : 0;
+  document.getElementById('mapTlFoot').textContent = maxMo>12
+    ? "Your slowest consequence lands past month 12. That is when this pivot is actually done, not when the messaging changes."
+    : maxMo>6 ? "Your slowest consequence lands between month 6 and 12. Budget cash and patience for the full window, not just week one."
+    : maxMo>3 ? "Your slowest consequence lands around month 6. Real, but shorter than most segment pivots."
+    : maxMo>1 ? "Your consequences all land within about 3 months. Faster than most pivots, if you have been honest about the timing."
+    : maxMo>0 ? "You have placed everything inside the first month. Almost no pivot is truly this fast. Go back and be honest about what takes longer."
     : "";
   renderMapCost();
   renderMapTodo();
@@ -1197,7 +1250,7 @@ function copyShareLink(){
   state.map.from = document.getElementById('mapFrom').value;
   state.map.to = document.getElementById('mapTo').value;
   const payload = {v:2, lever:state.map.lever, from:state.map.from, to:state.map.to,
-    nodes:Object.fromEntries(Object.entries(state.map.nodes).filter(([k,v])=>v.cur.trim()||v.nw.trim()).map(([k,v])=>[k,[v.cur,v.nw,v.band]])),
+    nodes:Object.fromEntries(Object.entries(state.map.nodes).filter(([k,v])=>v.cur.trim()||v.nw.trim()).map(([k,v])=>[k,[v.cur,v.nw,v.sel]])),
     nums:state.map.nums};
   const enc = btoa(unescape(encodeURIComponent(JSON.stringify(payload)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
   const url = location.origin + location.pathname + '#m=' + enc;
@@ -1223,7 +1276,11 @@ function loadFromHash(){
       if(state.map.nodes[k] && Array.isArray(v)){
         state.map.nodes[k].cur = String(v[0]||'').slice(0,1200);
         state.map.nodes[k].nw = String(v[1]||'').slice(0,1200);
-        if(BANDS[v[2]]) state.map.nodes[k].band = v[2];
+        let sel;
+        if(typeof v[2]==='string' && /^[wm]\d+$/.test(v[2]) && WHEN_OPTS.some(o=>o.v===v[2])) sel = v[2];
+        else if(typeof v[2]==='number' && v[2]>=1 && v[2]<=6) sel = colToSel(v[2]);
+        else if(BANDS[v[2]]) sel = bandSel(v[2]);
+        if(sel){ state.map.nodes[k].sel = sel; state.map.nodes[k].band = monthBand(selMonths(sel)); }
       }
     });
     if(payload.nums) Object.keys(payload.nums).forEach(k=>{
@@ -1234,9 +1291,9 @@ function loadFromHash(){
     document.getElementById('mapTo').value = state.map.to;
     document.querySelectorAll('[data-node-cur]').forEach(t=>{ t.value = state.map.nodes[t.dataset.nodeCur].cur; });
     document.querySelectorAll('[data-node-new]').forEach(t=>{ t.value = state.map.nodes[t.dataset.nodeNew].nw; });
-    document.querySelectorAll('.band-pick').forEach(bp=>{
-      const id = bp.dataset.node;
-      bp.querySelectorAll('.band-chip').forEach(bc=>bc.classList.toggle('sel', bc.dataset.band===state.map.nodes[id].band));
+    document.querySelectorAll('.when-select').forEach(sel=>{
+      const id = sel.dataset.nodeSel;
+      if(state.map.nodes[id]) sel.value = state.map.nodes[id].sel;
     });
     document.querySelectorAll('[data-num-map]').forEach(inp=>{
       const k = inp.dataset.numMap;
