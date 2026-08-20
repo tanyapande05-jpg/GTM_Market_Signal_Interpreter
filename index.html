@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTM Signal Lab — Tanya Pande</title>
-<meta name="description" content="Tools for first-time founders navigating the 0-to-1 journey in hardware, edtech, and hardware plus edtech startups.">
+<title>GTM Signal Lab · Tanya Pande</title>
+<meta name="description" content="Venture-builder diagnostics that turn 0-to-1 pattern recognition into systems founders can run, built for hardware and deep-tech ventures.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -227,6 +227,31 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .hero-headline{font-size:2.4rem;}
   .tool-header{grid-template-columns:1fr;gap:2rem;}
   .insight-grid{grid-template-columns:1fr;}
+  .hero-footer{gap:1.5rem 2rem;}
+  .stat-item{flex:1 1 42%;min-width:130px;}
+}
+@media(max-width:480px){
+  .hero{padding:2rem 1.1rem 2.5rem;}
+  .nav{flex-wrap:wrap;gap:8px 14px;}
+  .hero-headline{font-size:2rem;line-height:1.1;margin-bottom:1.4rem;}
+  .hero-sub{font-size:0.95rem;}
+  .hero-cta-row{flex-direction:column;align-items:stretch;}
+  .hero-cta-row .btn-main,.hero-cta-row .btn-ghost,.hero-cta-row a{width:100%;text-align:center;}
+  .hero-footer{flex-direction:column;gap:1.1rem;padding-top:1.5rem;}
+  .stat-item{flex:1 1 auto;min-width:0;}
+  .stat-num{font-size:1.6rem;}
+  .stat-label{font-size:10px;}
+  .story{padding:2.5rem 1.1rem;gap:2rem;}
+  .story-title{font-size:1.7rem;}
+  .story-block p{font-size:0.95rem;}
+  .insight-strip{padding:3rem 1.1rem;}
+  .tool-section,.coming-soon{padding:3rem 1.1rem;}
+  .t-card{padding:1.2rem 1rem;}
+  .opt-row,.chips{gap:6px;}
+  .t-btn-main,.t-btn-back,.btn-main,.btn-ghost{width:100%;text-align:center;}
+  .t-nav-row{flex-direction:column;gap:10px;}
+  .coming-pill-live,.coming-pill-soon{margin-left:0;margin-right:8px;}
+  .footer{flex-direction:column;align-items:flex-start;gap:10px;padding:2rem 1.1rem;}
 }
 </style>
 </head>
@@ -239,25 +264,24 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <a href="https://in.linkedin.com/in/tanya-pande" target="_blank" class="nav-link">LinkedIn ↗</a>
   </nav>
   <div class="hero-body">
-    <div class="eyebrow">3 Pivots. Learned by Doing.</div>
+    <div class="eyebrow">Venture Builder · Systems for the 0-to-1 journey</div>
     <h1 class="hero-headline serif">
       Most founders confuse<br>
       <em>signal</em> with noise.<br>
-      I did too.
+      I build the systems<br>
+      that separate them.
     </h1>
-    <p class="hero-sub">A toolkit for first-time founders navigating the 0-to-1 journey in hardware, edtech, and hardware plus edtech startups. Built from real experiences, mistakes, and lessons learned along the way.</p>
+    <p class="hero-sub">I'm a venture builder working in hardware and deep tech: the domains where iteration is slow, capital is physical, and India's non-dilutive government stack (DST, SISFS, DSIR, MeitY) is its own discipline. I turn 0-to-1 pattern recognition into systems founders can run themselves. My own founding years were just the first dataset; the transferable part is the system I pulled out of them.</p>
     <div class="hero-cta-row">
       <a href="#tool" class="btn-main">Try Signal Interpreter</a>
-      <a href="#story" class="btn-ghost">Read the story</a>
+      <a href="#story" class="btn-ghost">See how I think</a>
     </div>
   </div>
   <div class="hero-footer">
-    <div class="stat-item"><div class="stat-num serif">3</div><div class="stat-label mono">GTM pivots</div></div>
-    <div class="stat-item"><div class="stat-num serif">3500+</div><div class="stat-label mono">Students trained</div></div>
-    <div class="stat-item"><div class="stat-num serif">18 mo</div><div class="stat-label mono">Building the wrong thing</div></div>
-    
-    <div class="stat-item"><div class="stat-num serif">100+</div><div class="stat-label mono">Drone kits sold</div></div>
-    <div class="stat-item"><div class="stat-num serif">1</div><div class="stat-label mono">Question that changed everything</div></div>
+    <div class="stat-item"><div class="stat-num serif">Rs. 53.6L</div><div class="stat-label mono">Non-dilutive government capital navigated</div></div>
+    <div class="stat-item"><div class="stat-num serif">3</div><div class="stat-label mono">GTM motions run inside one venture</div></div>
+    <div class="stat-item"><div class="stat-num serif">42-62 days</div><div class="stat-label mono">What one hardware iteration actually costs</div></div>
+    <div class="stat-item"><div class="stat-num serif">4</div><div class="stat-label mono">Diagnostics built from the pattern</div></div>
   </div>
 </section>
  
@@ -265,34 +289,35 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <section id="story" style="border-bottom:1px solid var(--border);">
   <div class="story">
     <div class="story-left">
-      <div class="section-label mono">The story</div>
-      <h2 class="story-title serif">Why I Built This</h2>
+      <div class="section-label mono">The thinking</div>
+      <h2 class="story-title serif">From Founder to Venture Builder</h2>
       <div class="story-meta mono">
         Tanya Pande<br><br>
-        0-to-1 builder helping early-stage founders read market signals and execute faster.
+        Venture builder, hardware and deep tech. I read market signals across 0-to-1 ventures. Loop economics, unit economics, channel, and the non-dilutive capital stack. Then I turn what works into systems founders can run.
       </div>
     </div>
     <div class="story-right">
       <div class="story-block">
-        <div class="story-block-label mono">The Beginning</div>
-        <p>Building a drone is a complex process. From sourcing components and integrating subsystems to achieving that first successful flight, every step presents a new challenge.</p>
-        <p>We started by building a DIY Drone Kit and eventually went on to develop our own flight controller and remote controller. Over 18 months, we built three major flight controller iterations and invested Rs. 4 lakhs in indigenous development.</p>
-        <p>We were aerospace engineers building the core of the drone ecosystem. Without realizing it, we were solving a problem that was not urgent enough. Or perhaps we were simply deaf to what everyone around us had already been telling us. <span class="inline-tag tag-red">Identity trap</span></p>
+        <div class="story-block-label mono">The Raw Material</div>
+        <p>Building a drone is a systems problem. Sourcing components, integrating subsystems, getting to a first stable flight. Every layer depends on the one beneath it. It taught me to think in dependencies before outcomes.</p>
+        <p>We built a DIY drone kit, then our own flight controller and remote controller. Over 18 months: three flight controller iterations and Rs. 4 lakhs of indigenous R&D. Real engineering, real execution.</p>
+        <p>We were aerospace engineers building the core of a drone ecosystem, solving a problem that was real but not urgent. That gap between <em style="font-family:'Instrument Serif',serif;font-size:1rem;">real</em> and <em style="font-family:'Instrument Serif',serif;font-size:1rem;">urgent</em> is the first pattern I now look for in any venture. Back then I was living inside it; today I name it on sight. <span class="inline-tag tag-purple">Pattern I now name on sight</span></p>
       </div>
       <div class="story-block">
-        <div class="story-block-label mono">The Pivot We Did Not Recognize</div>
-        <p>We conducted Build Your Own Drone workshops, and the response was strong. Parents referred other parents. Teachers reached out. Revenue came in consistently. Yet we could not clearly see what was working or how to scale it.</p>
-        <p>DJI was our north star, and we saw ourselves as a product company. So we built a DIY drone kit, priced it at Rs. 5,000, and watched it get compared endlessly to imported Chinese drones. It felt like a race to the bottom. A race we had chosen to enter ourselves. <span class="inline-tag tag-purple">Quiet signal neglect</span></p>
+        <div class="story-block-label mono">The Pattern Hiding In Plain Sight</div>
+        <p>Our Build Your Own Drone workshops kept working. Parents referred other parents. Teachers reached out. Revenue came in consistently. The pull was quiet, repeating, and pointed in one clear direction.</p>
+        <p>But DJI was our north star, so we read ourselves as a product company and kept pushing a Rs. 5,000 kit into a race to the bottom against imported drones. The signal was steady; we were facing the other way. This exact mismatch, consistent pull versus the story you want to be true, is what the Signal Interpreter below is built to catch in seconds. <span class="inline-tag tag-purple">Now a diagnostic</span></p>
       </div>
       <div class="story-block">
-        <div class="story-block-label mono">The Question That Cut Through Everything</div>
-        <p>My father asked a simple question: <em style="font-family:'Instrument Serif',serif;font-size:1rem;">"What is actually bringing in revenue?"</em></p>
-        <p>That one question cut through 18 months of narrative. The workshops had been the answer from day one. The kit was the instrument. The experience was the product. We were a <span class="highlight">B2B2C hardware plus edtech company</span>, not a D2C hardware company. We had been validating the wrong thing all along. <span class="inline-tag tag-green">Real signal found</span></p>
+        <div class="story-block-label mono">The Question That Became A System</div>
+        <p>My father asked one question: <em style="font-family:'Instrument Serif',serif;font-size:1rem;">"What is actually bringing in revenue?"</em></p>
+        <p>It cut through 18 months of narrative. The workshops had been the answer from day one. The kit was the instrument; the experience was the product. We were a <span class="highlight">B2B2C hardware plus edtech company</span>, not a D2C hardware company. But the real move wasn't learning that once. It was turning it into a reusable test. That single question is now the revenue truth test inside this tool. Lived insight is a story; a repeatable diagnostic is a system. <span class="inline-tag tag-green">Real signal, systematized</span></p>
       </div>
       <div class="story-block">
-        <div class="story-block-label mono">What I Built From It</div>
-        <p>This toolkit exists because first-time founders in hardware, edtech, and hybrid hardware plus edtech businesses often lack a systematic way to interpret the signals their market is already giving them.</p>
-        <p>It is designed to challenge founder bias, surface hidden patterns, and help founders see the reality that is already right in front of them.</p>
+        <div class="story-block-label mono">What The Dataset Is, Honestly</div>
+        <p>One venture, three business models, three GTM motions: D2C, B2B, then B2B2C. Plus a hardware company and an edtech company running inside the same P&amp;L. Not three companies. One company that forced me to learn three ways of reading a market, and to notice when the outcomes of one model were being used to validate the other.</p>
+        <p>The founder years gave me the data. The venture-builder work is what I do with it: extract the pattern, encode it so someone else can run it without living through 18 months first, and then test it where it counts, on ventures that aren't mine.</p>
+        <p><span class="highlight">Where I run this read on other companies:</span> teardowns and 0-to-1 memos on consumer physical products, early-stage medical hardware, and the economics of the drone industry. <em style="font-family:'Instrument Serif',serif;font-size:1rem;">Linked here as they publish.</em></p>
       </div>
     </div>
   </div>
@@ -301,7 +326,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- INSIGHT STRIP -->
 <section class="insight-strip">
   <div class="insight-inner">
-    <div class="insight-title mono">Three things learned the hard way</div>
+    <div class="insight-title mono">Three patterns I now look for in every venture</div>
     <div class="insight-grid">
       <div class="insight-card">
         <div class="insight-num serif">01</div>
@@ -331,7 +356,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <h2 class="tool-title serif">Market Signal<br>Interpreter</h2>
       </div>
       <div>
-        <p class="tool-desc">Enter the signals you have been getting. This tool audits their source, weights them for validity, flags active bias patterns and works like a mirror, showing you what the signals are actually telling you, not what you are thinking they mean.</p>
+        <p class="tool-desc">Enter the signals you have been getting. This tool audits their source, weights them for validity, flags active bias patterns and works like a mirror, showing you what the signals are actually telling you, not what you are thinking they mean. It is the same read I run when I evaluate a venture, packaged so you can run it yourself.</p>
         <div class="tool-meta-row">
           <span class="tool-tag">Hardware</span>
           <span class="tool-tag">Ed-tech</span>
@@ -499,13 +524,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <section class="coming-soon" id="toolkit">
   <div class="coming-inner">
     <div class="section-label mono">The full toolkit</div>
-    <h2 class="story-title serif" style="font-size:2.2rem;margin-bottom:0.75rem;">4 tools. 1 connected system.</h2>
+    <h2 class="story-title serif" style="font-size:2.2rem;margin-bottom:0.75rem;">Two tools. One way of reading a market.</h2>
     <div class="coming-body">
-      <p>Each tool feeds the next. The output of your signal read becomes the input for mapping your pivot's full cascade. Built for founders in hardware, edtech, and hybrid hardware plus edtech.</p>
-      <p>Tools 1 and 2 are live. More coming soon.</p>
-      <a href="#tool" class="coming-pill-live" style="text-decoration:none;">Tool 1: Signal Interpreter — live</a>
-      <a href="cascade-map/" class="coming-pill-live" style="text-decoration:none;margin-left:8px;">Tool 2: GTM Pivot Cascade Map — live ↗</a>
-      <span class="coming-pill-soon">Tools 3, 4 coming soon</span>
+      <p>Tool 01 reads the signals you are getting and tells you which ones are real. Tool 02 maps what actually moves when you pull a GTM lever. They are separate diagnostics, not a pipeline. Both come from the same question: what is this venture's slowest loop, and can it survive it?</p>
+      <a href="#tool" class="coming-pill-live" style="text-decoration:none;">Tool 1: Signal Interpreter · live</a>
+      <a href="cascade-map/" class="coming-pill-live" style="text-decoration:none;margin-left:8px;">Tool 2: GTM Pivot Cascade Map · live ↗</a>
+      <p style="margin-top:2rem;"><span class="highlight">Currently exploring venture architect and platform roles with studios and funds building physical products.</span> Open to conversations: <a href="mailto:tanyapande05@gmail.com" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">tanyapande05@gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -1003,6 +1027,38 @@ function buildResults() {
 </script>
 
 <!-- Analytics: GoatCounter (same account as Tool 2). No cookies, no banner needed. -->
+<!-- Analytics events: wraps existing handlers, fires GoatCounter custom events.
+     Safe no-op if GoatCounter is blocked or not yet loaded. -->
+<script>
+(function(){
+  function gc(name){
+    try{
+      if(window.goatcounter && window.goatcounter.count){
+        window.goatcounter.count({ path: name, title: name, event: true });
+      }
+    }catch(e){/* never break the app for analytics */}
+  }
+  // Step progression: where people drop off.
+  if(window.tNext){ var _tn = window.tNext; window.tNext = function(from){
+    gc('step-'+(from+2)+'-reached'); if(from===3) gc('readout-reached');
+    return _tn.apply(this, arguments); }; }
+  // Which startup type and GTM motion people pick.
+  if(window.tSel){ var _ts = window.tSel; window.tSel = function(btn,key,val){
+    if(key==='type') gc('type-'+val);
+    if(key==='gtm') gc('gtm-'+val);
+    if(key==='revenue') gc('revenue-'+val);
+    return _ts.apply(this, arguments); }; }
+  // Did they add more than the default signals, and did they start over?
+  if(window.addSig){ var _as = window.addSig; window.addSig = function(){ gc('signal-added'); return _as.apply(this, arguments); }; }
+  if(window.restart){ var _rs = window.restart; window.restart = function(){ gc('restart'); return _rs.apply(this, arguments); }; }
+  // Outbound interest: did the readout push anyone to Tool 02?
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href*="cascade-map"]');
+    if(a) gc('to-tool-02');
+  }, true);
+})();
+</script>
+
 <script data-goatcounter="https://gtmsignallab.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
